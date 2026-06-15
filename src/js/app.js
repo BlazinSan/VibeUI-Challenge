@@ -1,5 +1,6 @@
 // app.js - HotMealBa shell, routing, and global UI behaviors
 
+import Lenis from 'lenis';
 import { store, escapeHtml } from './store.js';
 import { customerViews } from './views/customer.js';
 import { adminViews } from './views/admin.js';
@@ -14,8 +15,7 @@ const routeToPath = {
   'track-order': '/track',
   'admin-login': '/admin',
   'admin-dash': '/admin',
-  'admin-orders': '/admin/orders',
-  'admin-customers': '/admin/customers'
+  'admin-orders': '/admin/orders'
 };
 
 const pathToRoute = {
@@ -29,42 +29,77 @@ const pathToRoute = {
   '/track': 'track-order',
   '/reseller': 'apply',
   '/admin': 'admin-dash',
-  '/admin/orders': 'admin-orders',
-  '/admin/customers': 'admin-customers'
+  '/admin/orders': 'admin-orders'
 };
 
 const translations = {
   en: {
-    'nav.home': 'Home',
-    'nav.menu': 'Menu',
-    'nav.notes': 'Reviews',
-    'nav.track': 'Track Order',
-    'nav.reseller': 'Reseller',
-    'nav.admin': 'Admin Gateway'
+    'nav.home': 'Home', 'nav.menu': 'Menu', 'nav.notes': 'Reviews',
+    'nav.track': 'Track Order', 'nav.reseller': 'Reseller', 'nav.admin': 'Admin Gateway',
+    'home.eyebrow': 'Campus meals and dumplings',
+    'home.tagline': 'Order handmade dumplings, noodles, skewers, and reseller bundles with clean checkout and real order tracking.',
+    'home.browse': 'Browse Menu', 'home.reseller': 'Become a reseller',
+    'home.featured': 'Featured picks', 'home.popular': 'Popular menu items',
+    'home.browseType': 'Browse by order type', 'home.how': 'How it works',
+    'home.viewMenu': 'View full Menu', 'home.recent': 'Repeat a recent order',
+    'cta.addCart': 'Add to Cart', 'cta.checkout': 'Go to checkout', 'cta.viewCart': 'View cart',
+    'menu.title': 'HotMealBa order board',
+    'menu.search': 'Search dumplings, sauce, noodles...',
+    'menu.empty': 'No Menu items found',
+    'reviews.title': 'What customers say', 'reviews.next': 'Next review',
+    'common.subtotal': 'Subtotal', 'common.delivery': 'Delivery', 'common.total': 'Total',
+    'common.orders': 'orders', 'common.customers': 'customers', 'common.live': 'Live', 'common.tracking': 'tracking'
   },
   zh: {
-    'nav.home': '首页',
-    'nav.menu': '菜单',
-    'nav.notes': '评价',
-    'nav.track': '订单追踪',
-    'nav.reseller': '代理',
-    'nav.admin': '管理员'
+    'nav.home': '首页', 'nav.menu': '菜单', 'nav.notes': '评价',
+    'nav.track': '订单追踪', 'nav.reseller': '代理', 'nav.admin': '管理员',
+    'home.eyebrow': '校园美食与饺子',
+    'home.tagline': '订购手工饺子、面条、串烧和代理套餐，结账简单，订单实时追踪。',
+    'home.browse': '浏览菜单', 'home.reseller': '成为代理',
+    'home.featured': '精选推荐', 'home.popular': '热门菜品',
+    'home.browseType': '按类型浏览', 'home.how': '下单流程',
+    'home.viewMenu': '查看完整菜单', 'home.recent': '再次下单',
+    'cta.addCart': '加入购物车', 'cta.checkout': '去结账', 'cta.viewCart': '查看购物车',
+    'menu.title': 'HotMealBa 点餐板',
+    'menu.search': '搜索饺子、酱料、面条…',
+    'menu.empty': '未找到菜品',
+    'reviews.title': '顾客评价', 'reviews.next': '下一条评价',
+    'common.subtotal': '小计', 'common.delivery': '配送', 'common.total': '总计',
+    'common.orders': '订单', 'common.customers': '顾客', 'common.live': '实时', 'common.tracking': '追踪'
   },
   ms: {
-    'nav.home': 'Laman',
-    'nav.menu': 'Menu',
-    'nav.notes': 'Ulasan',
-    'nav.track': 'Jejak Pesanan',
-    'nav.reseller': 'Penjual',
-    'nav.admin': 'Admin'
+    'nav.home': 'Laman', 'nav.menu': 'Menu', 'nav.notes': 'Ulasan',
+    'nav.track': 'Jejak Pesanan', 'nav.reseller': 'Penjual', 'nav.admin': 'Admin',
+    'home.eyebrow': 'Hidangan kampus dan ladu',
+    'home.tagline': 'Pesan ladu buatan tangan, mi, sate, dan pakej penjual dengan pembayaran mudah dan penjejakan pesanan sebenar.',
+    'home.browse': 'Lihat Menu', 'home.reseller': 'Jadi penjual',
+    'home.featured': 'Pilihan utama', 'home.popular': 'Menu popular',
+    'home.browseType': 'Cari ikut jenis', 'home.how': 'Cara pesanan',
+    'home.viewMenu': 'Lihat Menu penuh', 'home.recent': 'Pesan semula',
+    'cta.addCart': 'Tambah ke Troli', 'cta.checkout': 'Ke pembayaran', 'cta.viewCart': 'Lihat troli',
+    'menu.title': 'Papan pesanan HotMealBa',
+    'menu.search': 'Cari ladu, sos, mi...',
+    'menu.empty': 'Tiada item Menu dijumpai',
+    'reviews.title': 'Kata pelanggan', 'reviews.next': 'Ulasan seterusnya',
+    'common.subtotal': 'Subjumlah', 'common.delivery': 'Penghantaran', 'common.total': 'Jumlah',
+    'common.orders': 'pesanan', 'common.customers': 'pelanggan', 'common.live': 'Langsung', 'common.tracking': 'penjejakan'
   },
   ar: {
-    'nav.home': 'الرئيسية',
-    'nav.menu': 'القائمة',
-    'nav.notes': 'المراجعات',
-    'nav.track': 'تتبع الطلب',
-    'nav.reseller': 'موزع',
-    'nav.admin': 'الإدارة'
+    'nav.home': 'الرئيسية', 'nav.menu': 'القائمة', 'nav.notes': 'المراجعات',
+    'nav.track': 'تتبع الطلب', 'nav.reseller': 'موزع', 'nav.admin': 'الإدارة',
+    'home.eyebrow': 'وجبات الحرم الجامعي والزلابية',
+    'home.tagline': 'اطلب الزلابية المصنوعة يدويًا والنودلز والأسياخ وحزم الموزعين مع دفع سهل وتتبع حقيقي للطلب.',
+    'home.browse': 'تصفح القائمة', 'home.reseller': 'كن موزعًا',
+    'home.featured': 'مختارات مميزة', 'home.popular': 'أصناف شائعة',
+    'home.browseType': 'تصفح حسب النوع', 'home.how': 'كيف تطلب',
+    'home.viewMenu': 'عرض القائمة كاملة', 'home.recent': 'إعادة طلب سابق',
+    'cta.addCart': 'أضف إلى السلة', 'cta.checkout': 'إتمام الطلب', 'cta.viewCart': 'عرض السلة',
+    'menu.title': 'لوحة طلبات HotMealBa',
+    'menu.search': 'ابحث عن زلابية، صلصة، نودلز...',
+    'menu.empty': 'لا توجد أصناف',
+    'reviews.title': 'آراء العملاء', 'reviews.next': 'المراجعة التالية',
+    'common.subtotal': 'المجموع الفرعي', 'common.delivery': 'التوصيل', 'common.total': 'الإجمالي',
+    'common.orders': 'طلبات', 'common.customers': 'عملاء', 'common.live': 'مباشر', 'common.tracking': 'تتبع'
   }
 };
 
@@ -92,6 +127,8 @@ class App {
 
     this.installHistoryRouting();
     this.installSmoothScroll();
+    this.installScrollReveal();
+    this.installScrollFocus();
     this.installCanvasBackground();
 
     this.applyDocumentChrome(store.state);
@@ -145,15 +182,36 @@ class App {
       if (window.location.pathname !== path) history.pushState({ view: nextView }, '', path);
     }
 
-    if (!preserveScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!preserveScroll) {
+      if (this.lenis) this.lenis.scrollTo(0, { immediate: false });
+      else window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   setLanguage(language) {
     store.setLanguage(language);
   }
 
+  // Jump to the Menu pre-filtered to a category (used by home category chips).
+  browseCategory(category) {
+    customerViews.setCatalogCategory(category, { silent: true });
+    this.switchView('catalog');
+  }
+
   toggleTheme() {
-    store.setTheme(store.state.theme === 'dark' ? 'light' : 'dark');
+    this.playThemeCurtain(store.state.theme === 'dark' ? 'light' : 'dark');
+  }
+
+  scrollToPosition(top, options = {}) {
+    if (this.lenis) this.lenis.scrollTo(top, { immediate: Boolean(options.immediate) });
+    else window.scrollTo({ top, behavior: options.immediate ? 'auto' : 'smooth' });
+  }
+
+  // Cycle through the supported languages - used by the compact mobile button.
+  cycleLanguage() {
+    const langs = ['en', 'zh', 'ms', 'ar'];
+    const next = langs[(langs.indexOf(store.state.language) + 1) % langs.length];
+    store.setLanguage(next);
   }
 
   submitAdminPassword(formData) {
@@ -171,6 +229,7 @@ class App {
   }
 
   openMealDetails(mealId) {
+    customerViews.prepMealDetails();
     store.setState({ selectedMealId: mealId });
     this.detailsModal.classList.remove('hidden');
     this.detailsModal.classList.add('flex');
@@ -254,8 +313,9 @@ class App {
     this.navMobile.classList.remove('hidden');
     this.sidebarAdmin.classList.add('hidden');
     this.sidebarAdmin.classList.remove('flex');
-    contentWrapper.classList.remove('w-full', 'px-6', 'md:px-10');
-    contentWrapper.classList.add('max-w-7xl', 'px-4', 'md:px-8');
+    contentWrapper.classList.remove('w-full', 'px-6', 'md:px-10', 'max-w-7xl', 'max-w-[96rem]', 'xl:px-10');
+    contentWrapper.classList.add(state.activeView === 'home' ? 'max-w-[96rem]' : 'max-w-7xl', 'px-4', 'md:px-8');
+    if (state.activeView === 'home') contentWrapper.classList.add('xl:px-10');
     mainBody.classList.remove('lg:pl-64', 'pt-6');
     mainBody.classList.add('pt-24');
 
@@ -295,9 +355,6 @@ class App {
         case 'track-order':
           customerViews.renderTrackOrder(this.viewContainer);
           break;
-        case 'admin-customers':
-          adminViews.renderCustomers(this.viewContainer);
-          break;
         default:
           customerViews.renderHome(this.viewContainer);
       }
@@ -305,7 +362,27 @@ class App {
 
     if (state.selectedMealId) this.renderModalContent(state.selectedMealId);
     if (!this.cartDrawer.classList.contains('translate-x-full')) customerViews.renderCartDrawer();
+
+    // Translate freshly-rendered content and arm desktop scroll-reveal.
+    this.applyTranslations();
+    this.markScrollFocusItems();
+    this.observeReveals();
+    this.updateScrollFocus?.();
     this.isRendering = false;
+  }
+
+  applyTranslations(root = document) {
+    const lang = store.state.language;
+    root.querySelectorAll('[data-i18n]').forEach((node) => {
+      const key = node.getAttribute('data-i18n');
+      const value = translations[lang]?.[key] || translations.en[key];
+      if (value) node.textContent = value;
+    });
+    root.querySelectorAll('[data-i18n-ph]').forEach((node) => {
+      const key = node.getAttribute('data-i18n-ph');
+      const value = translations[lang]?.[key] || translations.en[key];
+      if (value) node.setAttribute('placeholder', value);
+    });
   }
 
   applyDocumentChrome(state) {
@@ -316,11 +393,16 @@ class App {
     const langSelect = document.getElementById('language-toggle');
     if (langSelect) langSelect.value = state.language;
 
-    document.querySelectorAll('[data-i18n]').forEach((node) => {
-      const key = node.getAttribute('data-i18n');
-      node.textContent = translations[state.language]?.[key] || translations.en[key] || node.textContent;
-    });
+    // Sync the compact mobile language badge.
+    const langBadge = document.getElementById('mobile-lang-badge');
+    if (langBadge) langBadge.textContent = { en: 'EN', zh: '中', ms: 'BM', ar: 'ع' }[state.language] || 'EN';
 
+    // Sync the mobile theme icon (sun in dark mode = "switch to light", moon in light mode).
+    const isDark = state.theme === 'dark';
+    document.querySelector('.theme-mobile-sun')?.classList.toggle('hidden', !isDark);
+    document.querySelector('.theme-mobile-moon')?.classList.toggle('hidden', isDark);
+
+    this.applyTranslations();
     this.drawDumplingCanvas();
   }
 
@@ -390,30 +472,145 @@ class App {
   }
 
   installSmoothScroll() {
-    let velocity = 0;
-    let frame = 0;
-    const step = () => {
-      window.scrollBy(0, velocity * 0.16);
-      velocity *= 0.68;
-      if (Math.abs(velocity) > 0.45) {
-        frame = requestAnimationFrame(step);
-      } else {
-        frame = 0;
-        velocity = 0;
-      }
-    };
+    // Respect users who prefer reduced motion - leave native scrolling intact.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    window.addEventListener('wheel', (event) => {
-      const target = event.target;
-      if (
-        event.ctrlKey ||
-        target.closest('input, textarea, select, [data-native-scroll], .leaflet-container')
-      ) return;
-      event.preventDefault();
-      velocity += event.deltaY;
-      velocity = Math.max(Math.min(velocity, 220), -220);
-      if (!frame) frame = requestAnimationFrame(step);
-    }, { passive: false });
+    // Lenis momentum scrolling: a short, smooth glide that settles quickly.
+    this.lenis = new Lenis({
+      duration: 1.0,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true
+    });
+
+    const raf = (time) => {
+      this.lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+
+    // Keep inner scroll regions native - exclude them from Lenis now and on
+    // every re-render (the view container's innerHTML is rebuilt on navigation).
+    this.excludeNativeScroll();
+    const observer = new MutationObserver(() => this.excludeNativeScroll());
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  // Mark inner scroll regions so Lenis leaves their native scrolling alone.
+  excludeNativeScroll() {
+    document
+      .querySelectorAll('[data-native-scroll], .leaflet-container')
+      .forEach((el) => el.setAttribute('data-lenis-prevent', ''));
+  }
+
+  // Radial theme flash modeled after Captain's Food Hub.
+  playThemeCurtain(nextTheme) {
+    const swap = () => store.setTheme(nextTheme);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      swap();
+      return;
+    }
+    const root = document.documentElement;
+    const scrollY = window.scrollY;
+    const trigger = document.querySelector('[aria-label="Toggle light or dark mode"]:hover')
+      || (document.activeElement?.matches?.('[aria-label="Toggle light or dark mode"]') ? document.activeElement : null);
+    if (trigger) {
+      const rect = trigger.getBoundingClientRect();
+      root.style.setProperty('--theme-origin-x', `${Math.round(rect.left + rect.width / 2)}px`);
+      root.style.setProperty('--theme-origin-y', `${Math.round(rect.top + rect.height / 2)}px`);
+    } else {
+      root.style.removeProperty('--theme-origin-x');
+      root.style.removeProperty('--theme-origin-y');
+    }
+
+    root.classList.remove('theme-flip');
+    void root.offsetWidth;
+    root.classList.add('theme-flip');
+    swap();
+
+    const keepScroll = () => window.scrollTo(0, scrollY);
+    setTimeout(keepScroll, 0);
+    requestAnimationFrame(keepScroll);
+    setTimeout(keepScroll, 80);
+    setTimeout(keepScroll, 260);
+    setTimeout(keepScroll, 700);
+    setTimeout(() => root.classList.remove('theme-flip'), 650);
+  }
+
+  // Desktop-only fade/slide-in as sections enter the viewport.
+  installScrollReveal() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    this.revealObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          this.revealObserver.unobserve(entry.target);
+        }
+      }
+    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+  }
+
+  observeReveals() {
+    if (!this.revealObserver) return;
+    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+    document.querySelectorAll('[data-reveal]').forEach((node) => {
+      if (!isDesktop) {
+        node.classList.add('is-revealed'); // no hiding on phone/tablet
+        return;
+      }
+      if (!node.classList.contains('is-revealed')) this.revealObserver.observe(node);
+    });
+  }
+
+  markScrollFocusItems() {
+    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+    document.querySelectorAll('[data-scroll-focus]').forEach((node) => {
+      if (!node.hasAttribute('data-reveal')) node.removeAttribute('data-scroll-focus');
+    });
+    if (!isDesktop) return;
+    document.querySelectorAll('[data-reveal]').forEach((node) => {
+      node.setAttribute('data-scroll-focus', '');
+    });
+  }
+
+  installScrollFocus() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+      const nodes = document.querySelectorAll('[data-scroll-focus]');
+      if (!isDesktop) {
+        nodes.forEach((node) => {
+          node.style.removeProperty('--focus-opacity');
+          node.style.removeProperty('--focus-scale');
+          node.style.removeProperty('--focus-saturate');
+          node.classList.remove('is-scroll-centered');
+        });
+        return;
+      }
+
+      const viewportCenter = window.innerHeight / 2;
+      const focusRange = Math.max(260, window.innerHeight * 0.58);
+      nodes.forEach((node) => {
+        const rect = node.getBoundingClientRect();
+        const nodeCenter = rect.top + rect.height / 2;
+        const proximity = Math.max(0, 1 - Math.abs(nodeCenter - viewportCenter) / focusRange);
+        node.style.setProperty('--focus-opacity', (0.62 + proximity * 0.38).toFixed(3));
+        node.style.setProperty('--focus-scale', (0.965 + proximity * 0.045).toFixed(3));
+        node.style.setProperty('--focus-saturate', (0.9 + proximity * 0.12).toFixed(3));
+        node.classList.toggle('is-scroll-centered', proximity > 0.82);
+      });
+    };
+    const requestUpdate = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+    this.updateScrollFocus = requestUpdate;
+    if (window.app) window.app.updateScrollFocus = requestUpdate;
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    requestUpdate();
   }
 }
 
@@ -432,7 +629,11 @@ document.addEventListener('DOMContentLoaded', () => {
   window.app.updateCartQuantity = app.updateCartQuantity.bind(app);
   window.app.submitRating = app.submitRating.bind(app);
   window.app.toggleTheme = app.toggleTheme.bind(app);
+  window.app.cycleLanguage = app.cycleLanguage.bind(app);
+  window.app.browseCategory = app.browseCategory.bind(app);
   window.app.setLanguage = app.setLanguage.bind(app);
+  window.app.applyTranslations = app.applyTranslations.bind(app);
+  window.app.scrollToPosition = app.scrollToPosition.bind(app);
   window.app.submitAdminPassword = app.submitAdminPassword.bind(app);
   window.app.logoutAdmin = app.logoutAdmin.bind(app);
   window.app.sanitizePhoneInput = app.sanitizePhoneInput.bind(app);

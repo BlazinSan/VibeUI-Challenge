@@ -115,8 +115,13 @@ export function renderOrderTable(items) {
           <div class="text-xs text-secondary">Customer</div>
         </td>
         <td class="px-4 py-3 min-w-[220px]">
-          <div class="text-sm text-charcoal font-medium">${order.mealName}</div>
-          <div class="text-xs text-secondary">Qty: ${order.quantity}</div>
+          <div class="flex items-center gap-2.5">
+            ${order.photo ? `<img src="${order.photo}" alt="Order photo" class="h-9 w-9 rounded-lg object-cover border border-background-dark flex-shrink-0" />` : ''}
+            <div>
+              <div class="text-sm text-charcoal font-medium">${order.mealName}</div>
+              <div class="text-xs text-secondary">Qty: ${order.quantity}</div>
+            </div>
+          </div>
         </td>
         <td class="px-4 py-3 whitespace-nowrap text-sm text-charcoal font-semibold">
           RM ${order.amount.toFixed(2)}

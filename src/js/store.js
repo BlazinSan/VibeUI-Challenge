@@ -9,6 +9,7 @@ const RATINGS_KEY = 'hotmealba_ratings';
 const THEME_KEY = 'hotmealba_theme';
 const LANG_KEY = 'hotmealba_lang';
 const ADMIN_KEY = 'hotmealba_admin_unlocked';
+const ORDERWINDOW_KEY = 'hotmealba_order_window';
 
 const BRAND_IMAGES = [
   '/assets/images/dumplings-plate.png',
@@ -51,6 +52,14 @@ export function sanitizeOrderId(value) {
     .slice(0, 36);
 }
 
+function sanitizeImageValue(value, fallback = BRAND_IMAGES[0]) {
+  const text = String(value ?? '').trim();
+  if (/^data:image\/(png|jpe?g|webp|gif);base64,[a-z0-9+/=]+$/i.test(text) && text.length < 2_200_000) {
+    return text;
+  }
+  return sanitizeText(text, 300) || fallback;
+}
+
 export function escapeHtml(value) {
   return String(value ?? '')
     .replace(/&/g, '&amp;')
@@ -89,7 +98,8 @@ class AppStore {
       adminUnlocked: sessionStorage.getItem(ADMIN_KEY) === '1',
       pendingAdminView: 'admin-dash',
       theme: localStorage.getItem(THEME_KEY) || 'light',
-      language: localStorage.getItem(LANG_KEY) || 'en'
+      language: localStorage.getItem(LANG_KEY) || 'en',
+      orderWindow: readJSON(ORDERWINDOW_KEY, { openTime: '10:00', closeTime: '18:00' })
     };
 
     this.listeners = [];
@@ -165,6 +175,16 @@ class AppStore {
     const nextLanguage = ['en', 'zh', 'ms', 'ar'].includes(language) ? language : 'en';
     localStorage.setItem(LANG_KEY, nextLanguage);
     this.setState({ language: nextLanguage });
+  }
+
+  setOrderWindow(openTime, closeTime) {
+    const valid = (t) => /^([01]?\d|2[0-3]):[0-5]\d$/.test(String(t || ''));
+    const orderWindow = {
+      openTime: valid(openTime) ? openTime : this.state.orderWindow.openTime,
+      closeTime: valid(closeTime) ? closeTime : this.state.orderWindow.closeTime
+    };
+    writeJSON(ORDERWINDOW_KEY, orderWindow);
+    this.setState({ orderWindow });
   }
 
   unlockAdmin(password) {
@@ -347,17 +367,65 @@ class AppStore {
     return true;
   }
 
+  // Resolve a Google Maps short/full plus code OR a Google Maps link/coords
+  // into {lat, lng}. Returns null if nothing usable is found.
+  resolveLocationInput(raw) {
+    const text = decodeURIComponent(String(raw || '').trim());
+    if (!text) return null;
+
+    // 1) Plain "lat, lng" or a maps URL containing coordinates.
+    const coord = text.match(/@(-?\d{1,3}\.\d+),(-?\d{1,3}\.\d+)/)            // .../@1.55,103.63
+      || text.match(/[?&](?:q|ll|destination)=(-?\d{1,3}\.\d+),(-?\d{1,3}\.\d+)/)
+      || text.match(/!3d(-?\d{1,3}\.\d+)!4d(-?\d{1,3}\.\d+)/)
+      || text.match(/^\s*(-?\d{1,3}\.\d+)\s*,\s*(-?\d{1,3}\.\d+)\s*$/);
+    if (coord) {
+      const lat = Number(coord[1]); const lng = Number(coord[2]);
+      if (Number.isFinite(lat) && Number.isFinite(lng)) return { lat, lng };
+    }
+
+    // 2) Open Location Code (Google plus code). Full codes (8 chars before the
+    //    "+") decode directly; short codes (e.g. "6PM7+QF") are recovered using
+    //    the HotMealBa hub as the reference location.
+    const plus = text.match(/\b([23456789CFGHJMPQRVWX]{2,8}\+[23456789CFGHJMPQRVWX]{2,})\b/i);
+    if (plus) {
+      const code = plus[1].toUpperCase();
+      const before = code.indexOf('+');
+      const decoded = before >= 8
+        ? decodeOpenLocationCode(code)
+        : recoverOpenLocationCode(code, HUB_LOCATION.lat, HUB_LOCATION.lng);
+      if (decoded) return decoded;
+    }
+    return null;
+  }
+
+  updateTrackingFromInput(orderId, raw) {
+    const point = this.resolveLocationInput(raw);
+    if (!point) return false;
+    return this.updateTrackingLocation(orderId, point.lat, point.lng, 'Manual update');
+  }
+
+  setOrderPhoto(orderId, dataUrl) {
+    if (!orderId || !dataUrl) return false;
+    const orders = this.state.orders.map((order) => (
+      order.orderId === orderId ? { ...order, photo: dataUrl } : order
+    ));
+    this.saveOrders(orders, this.state.delivery);
+    this.setState({ orders });
+    return true;
+  }
+
   upsertMeal(formData) {
     const rawId = sanitizeText(formData.get('mealId'), 40);
     const mealId = rawId || `meal_${randomId(10000, 99999)}`;
     const current = this.state.meals.find((meal) => meal.mealId === mealId);
+    const image = sanitizeImageValue(formData.get('image'), current?.image || BRAND_IMAGES[0]);
     const meal = {
       ...(current || {}),
       mealId,
       mealName: sanitizeText(formData.get('mealName'), 90) || 'HotMealBa Menu Item',
       category: sanitizeText(formData.get('category'), 60) || 'Dumpling Packs',
       price: Math.max(0, sanitizeNumber(formData.get('price'), current?.price || 0)),
-      image: sanitizeText(formData.get('image'), 240) || BRAND_IMAGES[0],
+      image,
       packSize: sanitizeText(formData.get('packSize'), 80) || current?.packSize || '12 pcs',
       description: sanitizeText(formData.get('description'), 220) || current?.description || 'Fresh HotMealBa menu item.',
       rating: sanitizeNumber(formData.get('rating'), current?.rating || 4.8),
@@ -374,6 +442,7 @@ class AppStore {
 
     writeJSON(MEALS_KEY, meals);
     this.setState({ meals });
+    return mealId;
   }
 
   deleteMeal(mealId) {
@@ -407,6 +476,60 @@ class AppStore {
 
 function randomId(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Decode a full Open Location Code (plus code) to its centre {lat, lng}.
+// Pair-only decoding (10 digits) gives ~14m accuracy, which is plenty for a
+// map pin. Short codes without an area prefix can't be resolved standalone.
+function decodeOpenLocationCode(codeRaw) {
+  const ALPHABET = '23456789CFGHJMPQRVWX';
+  let code = String(codeRaw).replace(/\s+/g, '').toUpperCase().replace('+', '').replace(/0+$/, '');
+  if (code.length < 8) return null; // need an area code, not just a local short code
+  const digits = code.slice(0, 10);
+  let lat = -90, lng = -180, place = 20, lastPlace = 20;
+  for (let i = 0; i + 1 < digits.length; i += 2) {
+    const dLat = ALPHABET.indexOf(digits[i]);
+    const dLng = ALPHABET.indexOf(digits[i + 1]);
+    if (dLat < 0 || dLng < 0) return null;
+    lat += dLat * place;
+    lng += dLng * place;
+    lastPlace = place;
+    place /= 20;
+  }
+  return { lat: lat + lastPlace / 2, lng: lng + lastPlace / 2 };
+}
+
+// Encode lat/lng to a 10-digit plus code (pairs only) - used for short-code recovery.
+function encodeOpenLocationCode(lat, lng) {
+  const ALPHABET = '23456789CFGHJMPQRVWX';
+  let latVal = Math.min(180, Math.max(0, lat + 90));
+  let lngVal = ((lng + 180) % 360 + 360) % 360;
+  let latPlace = 20, lngPlace = 20, code = '';
+  for (let i = 0; i < 5; i++) {
+    const dLat = Math.min(19, Math.floor(latVal / latPlace));
+    latVal -= dLat * latPlace; latPlace /= 20;
+    const dLng = Math.min(19, Math.floor(lngVal / lngPlace));
+    lngVal -= dLng * lngPlace; lngPlace /= 20;
+    code += ALPHABET[dLat] + ALPHABET[dLng];
+  }
+  return code.slice(0, 8) + '+' + code.slice(8);
+}
+
+// Recover a short plus code (e.g. "6PM7+QF") into {lat,lng} near a reference point.
+function recoverOpenLocationCode(shortCode, refLat, refLng) {
+  const code = String(shortCode).toUpperCase().replace(/\s+/g, '');
+  const plusPos = code.indexOf('+');
+  const padding = 8 - plusPos;
+  if (padding <= 0) return decodeOpenLocationCode(code);
+  const resolution = Math.pow(20, 2 - padding / 2);
+  const refPrefix = encodeOpenLocationCode(refLat, refLng).replace('+', '').slice(0, padding);
+  const decoded = decodeOpenLocationCode(refPrefix + code);
+  if (!decoded) return null;
+  let { lat, lng } = decoded;
+  const half = resolution / 2;
+  if (lat > refLat + half) lat -= resolution; else if (lat < refLat - half) lat += resolution;
+  if (lng > refLng + half) lng -= resolution; else if (lng < refLng - half) lng += resolution;
+  return { lat, lng };
 }
 
 export const store = new AppStore();

@@ -66,13 +66,10 @@
     --color-danger-dark: 181 80 76;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
     @apply bg-background text-charcoal font-sans antialiased selection:bg-accent selection:text-white;
     overflow-x: hidden;
+    transition: background-color 0.45s ease, color 0.45s ease;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -85,20 +82,41 @@
   }
 }
 
+/* Lenis smooth-scroll recommended base styles */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
 @layer components {
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+  /* Scrollbar: hidden on phones, visible + prominent on tablet/desktop. */
+  @media (max-width: 767px) {
+    ::-webkit-scrollbar { width: 0; height: 0; }
+    html { scrollbar-width: none; }            /* Firefox */
+    body { -ms-overflow-style: none; }         /* legacy Edge */
   }
-  
-  ::-webkit-scrollbar-track {
-    @apply bg-transparent;
+
+  @media (min-width: 768px) {
+    ::-webkit-scrollbar { width: 12px; height: 12px; }
+    ::-webkit-scrollbar-track {
+      @apply bg-background-dark/30;
+    }
+    ::-webkit-scrollbar-thumb {
+      @apply bg-secondary/45 rounded-full border-2 border-solid;
+      border-color: rgb(var(--color-background) / 1);
+      background-clip: padding-box;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      @apply bg-accent/70;
+      background-clip: padding-box;
+    }
+    html { scrollbar-width: thin; scrollbar-color: rgb(var(--color-secondary) / 0.5) transparent; }
   }
-  
-  ::-webkit-scrollbar-thumb {
-    @apply bg-secondary/20 rounded-full hover:bg-secondary/40 transition-colors;
-  }
+
+  /* Inner scroll regions (cart lists, drawers) keep a slim subtle bar. */
+  [data-native-scroll]::-webkit-scrollbar { width: 6px; height: 6px; }
+  [data-native-scroll]::-webkit-scrollbar-thumb { @apply bg-secondary/30 rounded-full; }
 
   /* Warm paper panel */
   .glass-card {
@@ -146,8 +164,62 @@
     transform: translateX(36px);
   }
 
+  /* Compact icon button variant (used for theme/lang/admin on mobile). */
+  .icon-button {
+    @apply grid h-11 w-11 place-items-center rounded-lg border border-background-dark bg-background-card text-primary shadow-sm transition-all hover:text-accent hover:border-accent/40 active:scale-95;
+  }
+
+  /* Desktop top-nav links: padded pills with fill + shadow, echoing mobile nav. */
+  .desktop-nav-link {
+    @apply inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-sm font-semibold text-secondary transition-all hover:text-primary hover:bg-background-card hover:shadow-sm cursor-pointer;
+  }
+  .desktop-nav-link.is-active {
+    @apply bg-accent text-white shadow-accent-glow hover:text-white hover:bg-accent;
+  }
+
+  /* Review deck (flickable, glossy cards) */
+  .review-deck {
+    @apply relative mx-auto w-full;
+    min-height: 380px;
+    touch-action: pan-y;
+    perspective: 1400px;
+  }
+  .review-card {
+    @apply absolute inset-x-0 top-0 rounded-3xl border border-background-dark p-6 md:p-8 shadow-premium overflow-hidden;
+    /* Glossy glass: a soft top-left highlight layered over the card surface. */
+    background:
+      linear-gradient(150deg, rgb(255 255 255 / 0.16) 0%, rgb(255 255 255 / 0) 42%),
+      rgb(var(--color-background-card));
+    transform-origin: center bottom;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease;
+    will-change: transform, opacity;
+  }
+  [data-theme="dark"] .review-card {
+    background:
+      linear-gradient(150deg, rgb(255 255 255 / 0.09) 0%, rgb(255 255 255 / 0) 44%),
+      rgb(var(--color-background-card));
+  }
+  /* Sweeping sheen that runs across the front card only. */
+  .review-gloss {
+    @apply pointer-events-none absolute inset-0;
+    border-radius: inherit;
+    background: linear-gradient(115deg, transparent 36%, rgb(255 255 255 / 0.30) 48%, transparent 60%);
+    transform: translateX(-130%);
+    opacity: 0;
+    z-index: 2;
+  }
+  .review-card.is-top .review-gloss {
+    animation: review-sheen 4.8s ease-in-out 0.5s infinite;
+  }
+  @keyframes review-sheen {
+    0%   { transform: translateX(-130%); opacity: 0; }
+    14%  { opacity: 0.85; }
+    40%  { transform: translateX(130%); opacity: 0; }
+    100% { transform: translateX(130%); opacity: 0; }
+  }
+
   .mobile-nav-shell {
-    @apply fixed bottom-3 left-3 right-3 z-40 mx-auto flex h-[70px] max-w-md items-center justify-between rounded-2xl border border-background-dark bg-background-card/95 px-2 shadow-premium backdrop-blur-md md:hidden;
+    @apply fixed bottom-3 left-3 right-3 z-40 mx-auto flex h-[70px] max-w-md items-center justify-between rounded-2xl border border-background-dark bg-background-card/95 px-2 shadow-premium backdrop-blur-md lg:hidden;
   }
 
   .mobile-nav-button {
@@ -178,6 +250,86 @@
 
   .leaflet-control-attribution {
     font-size: 10px;
+  }
+}
+
+/* Reference-style theme flash: radial curtain from the theme button. */
+.theme-flip body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at var(--theme-origin-x, calc(100% - 96px)) var(--theme-origin-y, 42px),
+      rgb(var(--color-accent) / 0.22),
+      transparent 28%
+    ),
+    rgb(var(--color-background) / 0.72);
+  animation: theme-flash 0.64s forwards;
+}
+
+@keyframes theme-flash {
+  0% {
+    clip-path: circle(0 at var(--theme-origin-x, calc(100% - 96px)) var(--theme-origin-y, 42px));
+    opacity: 0.9;
+  }
+  55% {
+    clip-path: circle(145% at var(--theme-origin-x, calc(100% - 96px)) var(--theme-origin-y, 42px));
+    opacity: 0.72;
+  }
+  100% {
+    clip-path: circle(145% at var(--theme-origin-x, calc(100% - 96px)) var(--theme-origin-y, 42px));
+    opacity: 0;
+  }
+}
+
+/* Desktop fade-on-scroll reveal */
+@media (min-width: 1024px) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Center-weighted scroll focus: the centered content breathes forward while
+   surrounding content stays readable but visually quieter. */
+@media (min-width: 1024px) {
+  [data-scroll-focus] {
+    opacity: var(--focus-opacity, 0.72);
+    transform: scale(var(--focus-scale, 0.965));
+    filter: saturate(var(--focus-saturate, 0.9));
+    transform-origin: center;
+    transition: opacity 0.18s ease-out, transform 0.18s ease-out, filter 0.18s ease-out;
+    will-change: opacity, transform, filter;
+  }
+
+  [data-scroll-focus].is-scroll-centered {
+    z-index: 1;
+  }
+
+  [data-reveal][data-scroll-focus]:not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(26px) scale(var(--focus-scale, 0.965));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-flip body::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  [data-scroll-focus] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }
 
