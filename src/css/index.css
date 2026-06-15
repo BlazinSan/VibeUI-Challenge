@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-charcoal font-sans antialiased selection:bg-accent selection:text-white;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-primary font-semibold;
+    letter-spacing: 0;
+  }
+}
+
+@layer components {
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-secondary/20 rounded-full hover:bg-secondary/40 transition-colors;
+  }
+
+  /* Warm paper panel */
+  .glass-card {
+    @apply bg-background-card/90 backdrop-blur-sm border border-background-dark shadow-premium;
+  }
+
+  /* Interactive active/hover state transitions */
+  .interactive-scale {
+    @apply transition-all duration-300 hover:-translate-y-0.5 hover:shadow-premium-hover;
+  }
+
+  /* Inputs */
+  .form-input-premium {
+    @apply w-full px-4 py-3 bg-background-card border border-background-dark rounded-lg focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 transition-all text-charcoal placeholder:text-secondary/50;
+  }
+
+  .section-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .button-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-bold text-background transition-all hover:bg-primary-light active:scale-95;
+  }
+
+  .button-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-bold text-white shadow-accent-glow transition-all hover:bg-accent-dark hover:shadow-none active:scale-95;
+  }
+
+  .button-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-background-dark bg-background-card px-5 py-3 text-sm font-bold text-primary transition-all hover:border-accent/40 hover:bg-white active:scale-95;
+  }
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fadeScroll {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-fade-scroll {
+  animation: fadeScroll 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.shimmer-loading {
+  background: linear-gradient(90deg, #f3f3f3 25%, #ececec 50%, #f3f3f3 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Live Map Pulse Animation */
+.map-pulse {
+  position: relative;
+}
+.map-pulse::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  @apply bg-accent/30;
+  animation: pulse-ring 1.5s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.33);
+  }
+  80%, 100% {
+    opacity: 0;
+  }
+}

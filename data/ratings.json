@@ -1,0 +1,2102 @@
+[
+  {
+    "ratingId": "rate_0001",
+    "customerId": "cust_062",
+    "mealId": "meal_001",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0002",
+    "customerId": "cust_047",
+    "mealId": "meal_002",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0003",
+    "customerId": "cust_067",
+    "mealId": "meal_003",
+    "rating": 3,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0004",
+    "customerId": "cust_202",
+    "mealId": "meal_004",
+    "rating": 3,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0005",
+    "customerId": "cust_201",
+    "mealId": "meal_005",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0006",
+    "customerId": "cust_059",
+    "mealId": "meal_006",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0007",
+    "customerId": "cust_124",
+    "mealId": "meal_007",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0008",
+    "customerId": "cust_095",
+    "mealId": "meal_008",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0009",
+    "customerId": "cust_140",
+    "mealId": "meal_009",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0010",
+    "customerId": "cust_069",
+    "mealId": "meal_010",
+    "rating": 3,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0011",
+    "customerId": "cust_139",
+    "mealId": "meal_011",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0012",
+    "customerId": "cust_017",
+    "mealId": "meal_012",
+    "rating": 3,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0013",
+    "customerId": "cust_051",
+    "mealId": "meal_013",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0014",
+    "customerId": "cust_018",
+    "mealId": "meal_014",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0015",
+    "customerId": "cust_080",
+    "mealId": "meal_015",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0016",
+    "customerId": "cust_060",
+    "mealId": "meal_016",
+    "rating": 3,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0017",
+    "customerId": "cust_110",
+    "mealId": "meal_017",
+    "rating": 3,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0018",
+    "customerId": "cust_018",
+    "mealId": "meal_018",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0019",
+    "customerId": "cust_010",
+    "mealId": "meal_019",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0020",
+    "customerId": "cust_041",
+    "mealId": "meal_020",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0021",
+    "customerId": "cust_038",
+    "mealId": "meal_021",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0022",
+    "customerId": "cust_117",
+    "mealId": "meal_022",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0023",
+    "customerId": "cust_217",
+    "mealId": "meal_023",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0024",
+    "customerId": "cust_106",
+    "mealId": "meal_024",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0025",
+    "customerId": "cust_082",
+    "mealId": "meal_025",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0026",
+    "customerId": "cust_183",
+    "mealId": "meal_026",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0027",
+    "customerId": "cust_124",
+    "mealId": "meal_027",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0028",
+    "customerId": "cust_196",
+    "mealId": "meal_028",
+    "rating": 3,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0029",
+    "customerId": "cust_149",
+    "mealId": "meal_029",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0030",
+    "customerId": "cust_143",
+    "mealId": "meal_030",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0031",
+    "customerId": "cust_149",
+    "mealId": "meal_031",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0032",
+    "customerId": "cust_055",
+    "mealId": "meal_032",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0033",
+    "customerId": "cust_063",
+    "mealId": "meal_033",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0034",
+    "customerId": "cust_153",
+    "mealId": "meal_034",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0035",
+    "customerId": "cust_194",
+    "mealId": "meal_035",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0036",
+    "customerId": "cust_047",
+    "mealId": "meal_036",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0037",
+    "customerId": "cust_071",
+    "mealId": "meal_037",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0038",
+    "customerId": "cust_153",
+    "mealId": "meal_038",
+    "rating": 3,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0039",
+    "customerId": "cust_160",
+    "mealId": "meal_039",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0040",
+    "customerId": "cust_097",
+    "mealId": "meal_040",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0041",
+    "customerId": "cust_012",
+    "mealId": "meal_041",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0042",
+    "customerId": "cust_109",
+    "mealId": "meal_042",
+    "rating": 3,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0043",
+    "customerId": "cust_171",
+    "mealId": "meal_043",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0044",
+    "customerId": "cust_102",
+    "mealId": "meal_044",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0045",
+    "customerId": "cust_076",
+    "mealId": "meal_045",
+    "rating": 3,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0046",
+    "customerId": "cust_048",
+    "mealId": "meal_046",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0047",
+    "customerId": "cust_191",
+    "mealId": "meal_047",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0048",
+    "customerId": "cust_100",
+    "mealId": "meal_048",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0049",
+    "customerId": "cust_036",
+    "mealId": "meal_049",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0050",
+    "customerId": "cust_013",
+    "mealId": "meal_050",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0051",
+    "customerId": "cust_156",
+    "mealId": "meal_001",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0052",
+    "customerId": "cust_063",
+    "mealId": "meal_002",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0053",
+    "customerId": "cust_021",
+    "mealId": "meal_003",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0054",
+    "customerId": "cust_060",
+    "mealId": "meal_004",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0055",
+    "customerId": "cust_099",
+    "mealId": "meal_005",
+    "rating": 3,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0056",
+    "customerId": "cust_204",
+    "mealId": "meal_006",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0057",
+    "customerId": "cust_036",
+    "mealId": "meal_007",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0058",
+    "customerId": "cust_025",
+    "mealId": "meal_008",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0059",
+    "customerId": "cust_188",
+    "mealId": "meal_009",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0060",
+    "customerId": "cust_023",
+    "mealId": "meal_010",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0061",
+    "customerId": "cust_041",
+    "mealId": "meal_011",
+    "rating": 3,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0062",
+    "customerId": "cust_139",
+    "mealId": "meal_012",
+    "rating": 4,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0063",
+    "customerId": "cust_097",
+    "mealId": "meal_013",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0064",
+    "customerId": "cust_151",
+    "mealId": "meal_014",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0065",
+    "customerId": "cust_233",
+    "mealId": "meal_015",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0066",
+    "customerId": "cust_099",
+    "mealId": "meal_016",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0067",
+    "customerId": "cust_076",
+    "mealId": "meal_017",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0068",
+    "customerId": "cust_088",
+    "mealId": "meal_018",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0069",
+    "customerId": "cust_177",
+    "mealId": "meal_019",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0070",
+    "customerId": "cust_250",
+    "mealId": "meal_020",
+    "rating": 3,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0071",
+    "customerId": "cust_113",
+    "mealId": "meal_021",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0072",
+    "customerId": "cust_156",
+    "mealId": "meal_022",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0073",
+    "customerId": "cust_104",
+    "mealId": "meal_023",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0074",
+    "customerId": "cust_220",
+    "mealId": "meal_024",
+    "rating": 4,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0075",
+    "customerId": "cust_024",
+    "mealId": "meal_025",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0076",
+    "customerId": "cust_231",
+    "mealId": "meal_026",
+    "rating": 3,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0077",
+    "customerId": "cust_195",
+    "mealId": "meal_027",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0078",
+    "customerId": "cust_113",
+    "mealId": "meal_028",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0079",
+    "customerId": "cust_208",
+    "mealId": "meal_029",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0080",
+    "customerId": "cust_135",
+    "mealId": "meal_030",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0081",
+    "customerId": "cust_196",
+    "mealId": "meal_031",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0082",
+    "customerId": "cust_009",
+    "mealId": "meal_032",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0083",
+    "customerId": "cust_232",
+    "mealId": "meal_033",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0084",
+    "customerId": "cust_104",
+    "mealId": "meal_034",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0085",
+    "customerId": "cust_239",
+    "mealId": "meal_035",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0086",
+    "customerId": "cust_235",
+    "mealId": "meal_036",
+    "rating": 3,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0087",
+    "customerId": "cust_019",
+    "mealId": "meal_037",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0088",
+    "customerId": "cust_239",
+    "mealId": "meal_038",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0089",
+    "customerId": "cust_151",
+    "mealId": "meal_039",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0090",
+    "customerId": "cust_066",
+    "mealId": "meal_040",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0091",
+    "customerId": "cust_212",
+    "mealId": "meal_041",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0092",
+    "customerId": "cust_026",
+    "mealId": "meal_042",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0093",
+    "customerId": "cust_090",
+    "mealId": "meal_043",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0094",
+    "customerId": "cust_135",
+    "mealId": "meal_044",
+    "rating": 3,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0095",
+    "customerId": "cust_087",
+    "mealId": "meal_045",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0096",
+    "customerId": "cust_200",
+    "mealId": "meal_046",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0097",
+    "customerId": "cust_161",
+    "mealId": "meal_047",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0098",
+    "customerId": "cust_201",
+    "mealId": "meal_048",
+    "rating": 4,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0099",
+    "customerId": "cust_104",
+    "mealId": "meal_049",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0100",
+    "customerId": "cust_171",
+    "mealId": "meal_050",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0101",
+    "customerId": "cust_048",
+    "mealId": "meal_001",
+    "rating": 3,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0102",
+    "customerId": "cust_117",
+    "mealId": "meal_002",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0103",
+    "customerId": "cust_110",
+    "mealId": "meal_003",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0104",
+    "customerId": "cust_229",
+    "mealId": "meal_004",
+    "rating": 4,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0105",
+    "customerId": "cust_135",
+    "mealId": "meal_005",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0106",
+    "customerId": "cust_222",
+    "mealId": "meal_006",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0107",
+    "customerId": "cust_059",
+    "mealId": "meal_007",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0108",
+    "customerId": "cust_173",
+    "mealId": "meal_008",
+    "rating": 3,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0109",
+    "customerId": "cust_013",
+    "mealId": "meal_009",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0110",
+    "customerId": "cust_057",
+    "mealId": "meal_010",
+    "rating": 4,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0111",
+    "customerId": "cust_029",
+    "mealId": "meal_011",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0112",
+    "customerId": "cust_061",
+    "mealId": "meal_012",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0113",
+    "customerId": "cust_094",
+    "mealId": "meal_013",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0114",
+    "customerId": "cust_107",
+    "mealId": "meal_014",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0115",
+    "customerId": "cust_095",
+    "mealId": "meal_015",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0116",
+    "customerId": "cust_198",
+    "mealId": "meal_016",
+    "rating": 4,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0117",
+    "customerId": "cust_201",
+    "mealId": "meal_017",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0118",
+    "customerId": "cust_009",
+    "mealId": "meal_018",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0119",
+    "customerId": "cust_029",
+    "mealId": "meal_019",
+    "rating": 3,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0120",
+    "customerId": "cust_130",
+    "mealId": "meal_020",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0121",
+    "customerId": "cust_046",
+    "mealId": "meal_021",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0122",
+    "customerId": "cust_108",
+    "mealId": "meal_022",
+    "rating": 4,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0123",
+    "customerId": "cust_054",
+    "mealId": "meal_023",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0124",
+    "customerId": "cust_093",
+    "mealId": "meal_024",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0125",
+    "customerId": "cust_043",
+    "mealId": "meal_025",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0126",
+    "customerId": "cust_196",
+    "mealId": "meal_026",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0127",
+    "customerId": "cust_011",
+    "mealId": "meal_027",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0128",
+    "customerId": "cust_210",
+    "mealId": "meal_028",
+    "rating": 3,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0129",
+    "customerId": "cust_080",
+    "mealId": "meal_029",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0130",
+    "customerId": "cust_169",
+    "mealId": "meal_030",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0131",
+    "customerId": "cust_236",
+    "mealId": "meal_031",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0132",
+    "customerId": "cust_108",
+    "mealId": "meal_032",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0133",
+    "customerId": "cust_111",
+    "mealId": "meal_033",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0134",
+    "customerId": "cust_176",
+    "mealId": "meal_034",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0135",
+    "customerId": "cust_146",
+    "mealId": "meal_035",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0136",
+    "customerId": "cust_126",
+    "mealId": "meal_036",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0137",
+    "customerId": "cust_108",
+    "mealId": "meal_037",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0138",
+    "customerId": "cust_184",
+    "mealId": "meal_038",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0139",
+    "customerId": "cust_225",
+    "mealId": "meal_039",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0140",
+    "customerId": "cust_089",
+    "mealId": "meal_040",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0141",
+    "customerId": "cust_028",
+    "mealId": "meal_041",
+    "rating": 3,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0142",
+    "customerId": "cust_166",
+    "mealId": "meal_042",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0143",
+    "customerId": "cust_041",
+    "mealId": "meal_043",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0144",
+    "customerId": "cust_135",
+    "mealId": "meal_044",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0145",
+    "customerId": "cust_231",
+    "mealId": "meal_045",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0146",
+    "customerId": "cust_196",
+    "mealId": "meal_046",
+    "rating": 3,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0147",
+    "customerId": "cust_082",
+    "mealId": "meal_047",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0148",
+    "customerId": "cust_123",
+    "mealId": "meal_048",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0149",
+    "customerId": "cust_161",
+    "mealId": "meal_049",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0150",
+    "customerId": "cust_056",
+    "mealId": "meal_050",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0151",
+    "customerId": "cust_247",
+    "mealId": "meal_001",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0152",
+    "customerId": "cust_041",
+    "mealId": "meal_002",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0153",
+    "customerId": "cust_114",
+    "mealId": "meal_003",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0154",
+    "customerId": "cust_031",
+    "mealId": "meal_004",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0155",
+    "customerId": "cust_091",
+    "mealId": "meal_005",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0156",
+    "customerId": "cust_138",
+    "mealId": "meal_006",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0157",
+    "customerId": "cust_202",
+    "mealId": "meal_007",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0158",
+    "customerId": "cust_163",
+    "mealId": "meal_008",
+    "rating": 3,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0159",
+    "customerId": "cust_027",
+    "mealId": "meal_009",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0160",
+    "customerId": "cust_054",
+    "mealId": "meal_010",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0161",
+    "customerId": "cust_200",
+    "mealId": "meal_011",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0162",
+    "customerId": "cust_105",
+    "mealId": "meal_012",
+    "rating": 3,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0163",
+    "customerId": "cust_062",
+    "mealId": "meal_013",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0164",
+    "customerId": "cust_030",
+    "mealId": "meal_014",
+    "rating": 3,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0165",
+    "customerId": "cust_210",
+    "mealId": "meal_015",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0166",
+    "customerId": "cust_142",
+    "mealId": "meal_016",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0167",
+    "customerId": "cust_149",
+    "mealId": "meal_017",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0168",
+    "customerId": "cust_235",
+    "mealId": "meal_018",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0169",
+    "customerId": "cust_053",
+    "mealId": "meal_019",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0170",
+    "customerId": "cust_011",
+    "mealId": "meal_020",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0171",
+    "customerId": "cust_111",
+    "mealId": "meal_021",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0172",
+    "customerId": "cust_107",
+    "mealId": "meal_022",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0173",
+    "customerId": "cust_026",
+    "mealId": "meal_023",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0174",
+    "customerId": "cust_084",
+    "mealId": "meal_024",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0175",
+    "customerId": "cust_226",
+    "mealId": "meal_025",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0176",
+    "customerId": "cust_034",
+    "mealId": "meal_026",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0177",
+    "customerId": "cust_238",
+    "mealId": "meal_027",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0178",
+    "customerId": "cust_100",
+    "mealId": "meal_028",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0179",
+    "customerId": "cust_124",
+    "mealId": "meal_029",
+    "rating": 3,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0180",
+    "customerId": "cust_045",
+    "mealId": "meal_030",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0181",
+    "customerId": "cust_037",
+    "mealId": "meal_031",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0182",
+    "customerId": "cust_159",
+    "mealId": "meal_032",
+    "rating": 4,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0183",
+    "customerId": "cust_191",
+    "mealId": "meal_033",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0184",
+    "customerId": "cust_188",
+    "mealId": "meal_034",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0185",
+    "customerId": "cust_180",
+    "mealId": "meal_035",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0186",
+    "customerId": "cust_250",
+    "mealId": "meal_036",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0187",
+    "customerId": "cust_192",
+    "mealId": "meal_037",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0188",
+    "customerId": "cust_168",
+    "mealId": "meal_038",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0189",
+    "customerId": "cust_244",
+    "mealId": "meal_039",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0190",
+    "customerId": "cust_155",
+    "mealId": "meal_040",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0191",
+    "customerId": "cust_100",
+    "mealId": "meal_041",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0192",
+    "customerId": "cust_199",
+    "mealId": "meal_042",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0193",
+    "customerId": "cust_164",
+    "mealId": "meal_043",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0194",
+    "customerId": "cust_202",
+    "mealId": "meal_044",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0195",
+    "customerId": "cust_208",
+    "mealId": "meal_045",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0196",
+    "customerId": "cust_076",
+    "mealId": "meal_046",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0197",
+    "customerId": "cust_248",
+    "mealId": "meal_047",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0198",
+    "customerId": "cust_012",
+    "mealId": "meal_048",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0199",
+    "customerId": "cust_225",
+    "mealId": "meal_049",
+    "rating": 3,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0200",
+    "customerId": "cust_161",
+    "mealId": "meal_050",
+    "rating": 3,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0201",
+    "customerId": "cust_007",
+    "mealId": "meal_001",
+    "rating": 3,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0202",
+    "customerId": "cust_234",
+    "mealId": "meal_002",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0203",
+    "customerId": "cust_150",
+    "mealId": "meal_003",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0204",
+    "customerId": "cust_004",
+    "mealId": "meal_004",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0205",
+    "customerId": "cust_139",
+    "mealId": "meal_005",
+    "rating": 3,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0206",
+    "customerId": "cust_019",
+    "mealId": "meal_006",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0207",
+    "customerId": "cust_018",
+    "mealId": "meal_007",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0208",
+    "customerId": "cust_037",
+    "mealId": "meal_008",
+    "rating": 3,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0209",
+    "customerId": "cust_244",
+    "mealId": "meal_009",
+    "rating": 3,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0210",
+    "customerId": "cust_038",
+    "mealId": "meal_010",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0211",
+    "customerId": "cust_100",
+    "mealId": "meal_011",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0212",
+    "customerId": "cust_037",
+    "mealId": "meal_012",
+    "rating": 3,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0213",
+    "customerId": "cust_211",
+    "mealId": "meal_013",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0214",
+    "customerId": "cust_126",
+    "mealId": "meal_014",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0215",
+    "customerId": "cust_013",
+    "mealId": "meal_015",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0216",
+    "customerId": "cust_170",
+    "mealId": "meal_016",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0217",
+    "customerId": "cust_076",
+    "mealId": "meal_017",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0218",
+    "customerId": "cust_004",
+    "mealId": "meal_018",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0219",
+    "customerId": "cust_079",
+    "mealId": "meal_019",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0220",
+    "customerId": "cust_232",
+    "mealId": "meal_020",
+    "rating": 3,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0221",
+    "customerId": "cust_226",
+    "mealId": "meal_021",
+    "rating": 3,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0222",
+    "customerId": "cust_192",
+    "mealId": "meal_022",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0223",
+    "customerId": "cust_051",
+    "mealId": "meal_023",
+    "rating": 3,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0224",
+    "customerId": "cust_022",
+    "mealId": "meal_024",
+    "rating": 3,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0225",
+    "customerId": "cust_179",
+    "mealId": "meal_025",
+    "rating": 3,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0226",
+    "customerId": "cust_149",
+    "mealId": "meal_026",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0227",
+    "customerId": "cust_069",
+    "mealId": "meal_027",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0228",
+    "customerId": "cust_213",
+    "mealId": "meal_028",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0229",
+    "customerId": "cust_228",
+    "mealId": "meal_029",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0230",
+    "customerId": "cust_001",
+    "mealId": "meal_030",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0231",
+    "customerId": "cust_200",
+    "mealId": "meal_031",
+    "rating": 3,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0232",
+    "customerId": "cust_038",
+    "mealId": "meal_032",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0233",
+    "customerId": "cust_164",
+    "mealId": "meal_033",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0234",
+    "customerId": "cust_100",
+    "mealId": "meal_034",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0235",
+    "customerId": "cust_164",
+    "mealId": "meal_035",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0236",
+    "customerId": "cust_044",
+    "mealId": "meal_036",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0237",
+    "customerId": "cust_171",
+    "mealId": "meal_037",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0238",
+    "customerId": "cust_014",
+    "mealId": "meal_038",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0239",
+    "customerId": "cust_140",
+    "mealId": "meal_039",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0240",
+    "customerId": "cust_082",
+    "mealId": "meal_040",
+    "rating": 3,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0241",
+    "customerId": "cust_233",
+    "mealId": "meal_041",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0242",
+    "customerId": "cust_008",
+    "mealId": "meal_042",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0243",
+    "customerId": "cust_139",
+    "mealId": "meal_043",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0244",
+    "customerId": "cust_117",
+    "mealId": "meal_044",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0245",
+    "customerId": "cust_004",
+    "mealId": "meal_045",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0246",
+    "customerId": "cust_131",
+    "mealId": "meal_046",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0247",
+    "customerId": "cust_092",
+    "mealId": "meal_047",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0248",
+    "customerId": "cust_050",
+    "mealId": "meal_048",
+    "rating": 3,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0249",
+    "customerId": "cust_053",
+    "mealId": "meal_049",
+    "rating": 3,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0250",
+    "customerId": "cust_178",
+    "mealId": "meal_050",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0251",
+    "customerId": "cust_145",
+    "mealId": "meal_001",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0252",
+    "customerId": "cust_238",
+    "mealId": "meal_002",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0253",
+    "customerId": "cust_129",
+    "mealId": "meal_003",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0254",
+    "customerId": "cust_161",
+    "mealId": "meal_004",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0255",
+    "customerId": "cust_204",
+    "mealId": "meal_005",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0256",
+    "customerId": "cust_235",
+    "mealId": "meal_006",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0257",
+    "customerId": "cust_050",
+    "mealId": "meal_007",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0258",
+    "customerId": "cust_244",
+    "mealId": "meal_008",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0259",
+    "customerId": "cust_004",
+    "mealId": "meal_009",
+    "rating": 3,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0260",
+    "customerId": "cust_096",
+    "mealId": "meal_010",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0261",
+    "customerId": "cust_248",
+    "mealId": "meal_011",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0262",
+    "customerId": "cust_038",
+    "mealId": "meal_012",
+    "rating": 3,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0263",
+    "customerId": "cust_190",
+    "mealId": "meal_013",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0264",
+    "customerId": "cust_139",
+    "mealId": "meal_014",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0265",
+    "customerId": "cust_164",
+    "mealId": "meal_015",
+    "rating": 3,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0266",
+    "customerId": "cust_120",
+    "mealId": "meal_016",
+    "rating": 4,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0267",
+    "customerId": "cust_158",
+    "mealId": "meal_017",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0268",
+    "customerId": "cust_223",
+    "mealId": "meal_018",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0269",
+    "customerId": "cust_092",
+    "mealId": "meal_019",
+    "rating": 4,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0270",
+    "customerId": "cust_127",
+    "mealId": "meal_020",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0271",
+    "customerId": "cust_162",
+    "mealId": "meal_021",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0272",
+    "customerId": "cust_238",
+    "mealId": "meal_022",
+    "rating": 4,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0273",
+    "customerId": "cust_184",
+    "mealId": "meal_023",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0274",
+    "customerId": "cust_005",
+    "mealId": "meal_024",
+    "rating": 3,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0275",
+    "customerId": "cust_066",
+    "mealId": "meal_025",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0276",
+    "customerId": "cust_182",
+    "mealId": "meal_026",
+    "rating": 3,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0277",
+    "customerId": "cust_229",
+    "mealId": "meal_027",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0278",
+    "customerId": "cust_038",
+    "mealId": "meal_028",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0279",
+    "customerId": "cust_209",
+    "mealId": "meal_029",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0280",
+    "customerId": "cust_065",
+    "mealId": "meal_030",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0281",
+    "customerId": "cust_052",
+    "mealId": "meal_031",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0282",
+    "customerId": "cust_189",
+    "mealId": "meal_032",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0283",
+    "customerId": "cust_200",
+    "mealId": "meal_033",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0284",
+    "customerId": "cust_015",
+    "mealId": "meal_034",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0285",
+    "customerId": "cust_132",
+    "mealId": "meal_035",
+    "rating": 4,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0286",
+    "customerId": "cust_139",
+    "mealId": "meal_036",
+    "rating": 5,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0287",
+    "customerId": "cust_085",
+    "mealId": "meal_037",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0288",
+    "customerId": "cust_167",
+    "mealId": "meal_038",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0289",
+    "customerId": "cust_070",
+    "mealId": "meal_039",
+    "rating": 5,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0290",
+    "customerId": "cust_073",
+    "mealId": "meal_040",
+    "rating": 4,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0291",
+    "customerId": "cust_170",
+    "mealId": "meal_041",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0292",
+    "customerId": "cust_061",
+    "mealId": "meal_042",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0293",
+    "customerId": "cust_096",
+    "mealId": "meal_043",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0294",
+    "customerId": "cust_118",
+    "mealId": "meal_044",
+    "rating": 5,
+    "review": "Good value for students splitting a party tray."
+  },
+  {
+    "ratingId": "rate_0295",
+    "customerId": "cust_197",
+    "mealId": "meal_045",
+    "rating": 4,
+    "review": "Packed neatly and still frozen when it arrived at campus."
+  },
+  {
+    "ratingId": "rate_0296",
+    "customerId": "cust_186",
+    "mealId": "meal_046",
+    "rating": 5,
+    "review": "Easy to resell because the pack size and labels are clear."
+  },
+  {
+    "ratingId": "rate_0297",
+    "customerId": "cust_050",
+    "mealId": "meal_047",
+    "rating": 5,
+    "review": "The filling tastes balanced and the sauce bundle helps a lot."
+  },
+  {
+    "ratingId": "rate_0298",
+    "customerId": "cust_054",
+    "mealId": "meal_048",
+    "rating": 4,
+    "review": "Great freezer stock for late study nights."
+  },
+  {
+    "ratingId": "rate_0299",
+    "customerId": "cust_164",
+    "mealId": "meal_049",
+    "rating": 5,
+    "review": "Delivery tracking was clear and the order was simple to repeat."
+  },
+  {
+    "ratingId": "rate_0300",
+    "customerId": "cust_242",
+    "mealId": "meal_050",
+    "rating": 4,
+    "review": "Good value for students splitting a party tray."
+  }
+]

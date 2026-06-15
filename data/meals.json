@@ -1,0 +1,998 @@
+[
+  {
+    "mealId": "meal_001",
+    "mealName": "Signature Chicken Dumpling Pack",
+    "category": "Dumpling Packs",
+    "price": 18.9,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 24,
+    "packSize": "24 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 1.51,
+    "badge": "Best seller",
+    "spiceLevel": "Mild",
+    "description": "24 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chicken thigh",
+      "Chives",
+      "Ginger soy"
+    ]
+  },
+  {
+    "mealId": "meal_002",
+    "mealName": "Pork and Cabbage Freezer Pack",
+    "category": "Dumpling Packs",
+    "price": 20.5,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 24,
+    "packSize": "24 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 1.64,
+    "badge": "Campus favorite",
+    "spiceLevel": "Mild",
+    "description": "24 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Pork shoulder",
+      "Napa cabbage",
+      "White pepper"
+    ]
+  },
+  {
+    "mealId": "meal_003",
+    "mealName": "Mushroom Tofu Dumpling Pack",
+    "category": "Dumpling Packs",
+    "price": 19.1,
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-1626776876729-bab4369a5a5a?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 24,
+    "packSize": "24 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 1.53,
+    "badge": "Vegetarian",
+    "spiceLevel": "Mild",
+    "description": "24 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Tofu",
+      "Shiitake",
+      "Sesame oil"
+    ]
+  },
+  {
+    "mealId": "meal_004",
+    "mealName": "Prawn Chive Dumpling Pack",
+    "category": "Dumpling Packs",
+    "price": 24.9,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1625938145744-e380515399c7?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 20,
+    "packSize": "20 pcs",
+    "freezerLife": "21 days",
+    "resellerMargin": 1.99,
+    "badge": "Premium fill",
+    "spiceLevel": "Mild",
+    "description": "20 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Prawn",
+      "Garlic chive",
+      "Light soy"
+    ]
+  },
+  {
+    "mealId": "meal_005",
+    "mealName": "Spicy Kimchi Chicken Pack",
+    "category": "Dumpling Packs",
+    "price": 21.5,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 24,
+    "packSize": "24 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 1.72,
+    "badge": "Spicy pick",
+    "spiceLevel": "Medium spicy",
+    "description": "24 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chicken",
+      "Kimchi",
+      "Gochugaru"
+    ]
+  },
+  {
+    "mealId": "meal_006",
+    "mealName": "Black Pepper Beef Dumpling Pack",
+    "category": "Dumpling Packs",
+    "price": 24.1,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 20,
+    "packSize": "20 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 1.93,
+    "badge": "Hearty",
+    "spiceLevel": "Mild",
+    "description": "20 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Beef",
+      "Black pepper",
+      "Scallion"
+    ]
+  },
+  {
+    "mealId": "meal_007",
+    "mealName": "Four Filling Sampler Box",
+    "category": "Sampler Boxes",
+    "price": 32.9,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 36,
+    "packSize": "36 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 2.63,
+    "badge": "Sampler",
+    "spiceLevel": "Mild",
+    "description": "36 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chicken",
+      "Pork",
+      "Mushroom",
+      "Prawn"
+    ]
+  },
+  {
+    "mealId": "meal_008",
+    "mealName": "Campus Starter Sampler",
+    "category": "Sampler Boxes",
+    "price": 27.5,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 30,
+    "packSize": "30 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 2.2,
+    "badge": "Starter bundle",
+    "spiceLevel": "Mild",
+    "description": "30 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chicken",
+      "Pork",
+      "Soy dip"
+    ]
+  },
+  {
+    "mealId": "meal_009",
+    "mealName": "Vegetarian Sampler Box",
+    "category": "Sampler Boxes",
+    "price": 30.1,
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-1626776876729-bab4369a5a5a?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 32,
+    "packSize": "32 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 2.41,
+    "badge": "Meat-free",
+    "spiceLevel": "Mild",
+    "description": "32 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Mushroom",
+      "Tofu",
+      "Spinach"
+    ]
+  },
+  {
+    "mealId": "meal_010",
+    "mealName": "Spicy Duo Sampler",
+    "category": "Sampler Boxes",
+    "price": 29.9,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1625938145744-e380515399c7?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 32,
+    "packSize": "32 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 2.39,
+    "badge": "Heat pack",
+    "spiceLevel": "Medium spicy",
+    "description": "32 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Kimchi chicken",
+      "Mala beef",
+      "Chili crisp"
+    ]
+  },
+  {
+    "mealId": "meal_011",
+    "mealName": "Study Group Party Tray",
+    "category": "Party Trays",
+    "price": 46.5,
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 60,
+    "packSize": "60 pcs",
+    "freezerLife": "24 days",
+    "resellerMargin": 3.72,
+    "badge": "Party tray",
+    "spiceLevel": "Mild",
+    "description": "60 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chicken",
+      "Pork",
+      "Sesame sauce"
+    ]
+  },
+  {
+    "mealId": "meal_012",
+    "mealName": "Club Night Party Tray",
+    "category": "Party Trays",
+    "price": 60.1,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 80,
+    "packSize": "80 pcs",
+    "freezerLife": "24 days",
+    "resellerMargin": 4.81,
+    "badge": "Large tray",
+    "spiceLevel": "Mild",
+    "description": "80 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Mixed fillings",
+      "Garlic soy",
+      "Chili oil"
+    ]
+  },
+  {
+    "mealId": "meal_013",
+    "mealName": "Family Freezer Party Tray",
+    "category": "Party Trays",
+    "price": 52.9,
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 72,
+    "packSize": "72 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 4.23,
+    "badge": "Family pack",
+    "spiceLevel": "Mild",
+    "description": "72 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Pork",
+      "Chicken",
+      "Mushroom"
+    ]
+  },
+  {
+    "mealId": "meal_014",
+    "mealName": "Hotpot Dumpling Tray",
+    "category": "Party Trays",
+    "price": 50.5,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 70,
+    "packSize": "70 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 4.04,
+    "badge": "Hotpot-ready",
+    "spiceLevel": "Mild",
+    "description": "70 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chicken",
+      "Prawn",
+      "Soup herbs"
+    ]
+  },
+  {
+    "mealId": "meal_015",
+    "mealName": "Soy Ginger Dip Bottle",
+    "category": "Sauces",
+    "price": 7.7,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1626776876729-bab4369a5a5a?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 250,
+    "packSize": "250 ml",
+    "freezerLife": "45 days",
+    "resellerMargin": 0.62,
+    "badge": "Sauce",
+    "spiceLevel": "Mild",
+    "description": "250 ml frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Soy sauce",
+      "Ginger",
+      "Rice vinegar"
+    ]
+  },
+  {
+    "mealId": "meal_016",
+    "mealName": "Chili Crisp Jar",
+    "category": "Sauces",
+    "price": 8.5,
+    "rating": 4.1,
+    "image": "https://images.unsplash.com/photo-1625938145744-e380515399c7?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 180,
+    "packSize": "180 g",
+    "freezerLife": "60 days",
+    "resellerMargin": 0.68,
+    "badge": "Sauce",
+    "spiceLevel": "Mild",
+    "description": "180 g frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chili flakes",
+      "Garlic",
+      "Sesame"
+    ]
+  },
+  {
+    "mealId": "meal_017",
+    "mealName": "Garlic Sesame Sauce",
+    "category": "Sauces",
+    "price": 8.1,
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 220,
+    "packSize": "220 ml",
+    "freezerLife": "45 days",
+    "resellerMargin": 0.65,
+    "badge": "Sauce",
+    "spiceLevel": "Mild",
+    "description": "220 ml frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Sesame paste",
+      "Garlic",
+      "Soy"
+    ]
+  },
+  {
+    "mealId": "meal_018",
+    "mealName": "Mala Pepper Sauce",
+    "category": "Sauces",
+    "price": 10.1,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 180,
+    "packSize": "180 g",
+    "freezerLife": "60 days",
+    "resellerMargin": 0.81,
+    "badge": "Sauce",
+    "spiceLevel": "Medium spicy",
+    "description": "180 g frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Sichuan pepper",
+      "Chili oil",
+      "Spices"
+    ]
+  },
+  {
+    "mealId": "meal_019",
+    "mealName": "Reseller Starter Case",
+    "category": "Reseller Cases",
+    "price": 158,
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 10,
+    "packSize": "10 packs",
+    "freezerLife": "30 days",
+    "resellerMargin": 28.44,
+    "badge": "Reseller case",
+    "spiceLevel": "Mild",
+    "description": "10 packs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Mixed best sellers",
+      "Labels",
+      "Seller sheet"
+    ]
+  },
+  {
+    "mealId": "meal_020",
+    "mealName": "Reseller Campus Case",
+    "category": "Reseller Cases",
+    "price": 298.6,
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 20,
+    "packSize": "20 packs",
+    "freezerLife": "30 days",
+    "resellerMargin": 53.75,
+    "badge": "High margin",
+    "spiceLevel": "Mild",
+    "description": "20 packs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Top sellers",
+      "Sauce bundle",
+      "Order sheet"
+    ]
+  },
+  {
+    "mealId": "meal_021",
+    "mealName": "Reseller Event Case",
+    "category": "Reseller Cases",
+    "price": 439.2,
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-1626776876729-bab4369a5a5a?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 30,
+    "packSize": "30 packs",
+    "freezerLife": "30 days",
+    "resellerMargin": 79.06,
+    "badge": "Event case",
+    "spiceLevel": "Mild",
+    "description": "30 packs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Party tray mix",
+      "Sauce bundle",
+      "Batch labels"
+    ]
+  },
+  {
+    "mealId": "meal_022",
+    "mealName": "Mini Bamboo Steamer Add-on",
+    "category": "Add-ons",
+    "price": 12.9,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1625938145744-e380515399c7?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 1,
+    "packSize": "1 unit",
+    "freezerLife": "Reusable",
+    "resellerMargin": 1.03,
+    "badge": "Add-on",
+    "spiceLevel": "Mild",
+    "description": "1 unit frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Bamboo steamer",
+      "Liner sheets"
+    ]
+  },
+  {
+    "mealId": "meal_023",
+    "mealName": "Freezer Label Sticker Set",
+    "category": "Add-ons",
+    "price": 5.5,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 40,
+    "packSize": "40 labels",
+    "freezerLife": "Reusable",
+    "resellerMargin": 0.44,
+    "badge": "Add-on",
+    "spiceLevel": "Mild",
+    "description": "40 labels frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Date labels",
+      "Flavor labels"
+    ]
+  },
+  {
+    "mealId": "meal_024",
+    "mealName": "Campus Delivery Cooler Bag",
+    "category": "Add-ons",
+    "price": 20.1,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 1,
+    "packSize": "1 bag",
+    "freezerLife": "Reusable",
+    "resellerMargin": 1.61,
+    "badge": "Add-on",
+    "spiceLevel": "Mild",
+    "description": "1 bag frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Insulated bag",
+      "Cold insert"
+    ]
+  },
+  {
+    "mealId": "meal_025",
+    "mealName": "Signature Chicken Dumpling Pack Batch 2",
+    "category": "Dumpling Packs",
+    "price": 20.9,
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 24,
+    "packSize": "24 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 1.67,
+    "badge": "Best seller",
+    "spiceLevel": "Mild",
+    "description": "24 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chicken thigh",
+      "Chives",
+      "Ginger soy"
+    ]
+  },
+  {
+    "mealId": "meal_026",
+    "mealName": "Pork and Cabbage Freezer Pack Batch 2",
+    "category": "Dumpling Packs",
+    "price": 22.5,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 24,
+    "packSize": "24 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 1.8,
+    "badge": "Campus favorite",
+    "spiceLevel": "Mild",
+    "description": "24 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Pork shoulder",
+      "Napa cabbage",
+      "White pepper"
+    ]
+  },
+  {
+    "mealId": "meal_027",
+    "mealName": "Mushroom Tofu Dumpling Pack Batch 2",
+    "category": "Dumpling Packs",
+    "price": 21.1,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1626776876729-bab4369a5a5a?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 24,
+    "packSize": "24 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 1.69,
+    "badge": "Vegetarian",
+    "spiceLevel": "Mild",
+    "description": "24 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Tofu",
+      "Shiitake",
+      "Sesame oil"
+    ]
+  },
+  {
+    "mealId": "meal_028",
+    "mealName": "Prawn Chive Dumpling Pack Batch 2",
+    "category": "Dumpling Packs",
+    "price": 26.9,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1625938145744-e380515399c7?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 20,
+    "packSize": "20 pcs",
+    "freezerLife": "21 days",
+    "resellerMargin": 2.15,
+    "badge": "Premium fill",
+    "spiceLevel": "Mild",
+    "description": "20 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Prawn",
+      "Garlic chive",
+      "Light soy"
+    ]
+  },
+  {
+    "mealId": "meal_029",
+    "mealName": "Spicy Kimchi Chicken Pack Batch 2",
+    "category": "Dumpling Packs",
+    "price": 23.5,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 24,
+    "packSize": "24 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 1.88,
+    "badge": "Spicy pick",
+    "spiceLevel": "Medium spicy",
+    "description": "24 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chicken",
+      "Kimchi",
+      "Gochugaru"
+    ]
+  },
+  {
+    "mealId": "meal_030",
+    "mealName": "Black Pepper Beef Dumpling Pack Batch 2",
+    "category": "Dumpling Packs",
+    "price": 26.1,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 20,
+    "packSize": "20 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 2.09,
+    "badge": "Hearty",
+    "spiceLevel": "Mild",
+    "description": "20 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Beef",
+      "Black pepper",
+      "Scallion"
+    ]
+  },
+  {
+    "mealId": "meal_031",
+    "mealName": "Four Filling Sampler Box Batch 2",
+    "category": "Sampler Boxes",
+    "price": 34.9,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 36,
+    "packSize": "36 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 2.79,
+    "badge": "Sampler",
+    "spiceLevel": "Mild",
+    "description": "36 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chicken",
+      "Pork",
+      "Mushroom",
+      "Prawn"
+    ]
+  },
+  {
+    "mealId": "meal_032",
+    "mealName": "Campus Starter Sampler Batch 2",
+    "category": "Sampler Boxes",
+    "price": 29.5,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 30,
+    "packSize": "30 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 2.36,
+    "badge": "Starter bundle",
+    "spiceLevel": "Mild",
+    "description": "30 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chicken",
+      "Pork",
+      "Soy dip"
+    ]
+  },
+  {
+    "mealId": "meal_033",
+    "mealName": "Vegetarian Sampler Box Batch 2",
+    "category": "Sampler Boxes",
+    "price": 32.1,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1626776876729-bab4369a5a5a?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 32,
+    "packSize": "32 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 2.57,
+    "badge": "Meat-free",
+    "spiceLevel": "Mild",
+    "description": "32 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Mushroom",
+      "Tofu",
+      "Spinach"
+    ]
+  },
+  {
+    "mealId": "meal_034",
+    "mealName": "Spicy Duo Sampler Batch 2",
+    "category": "Sampler Boxes",
+    "price": 31.9,
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-1625938145744-e380515399c7?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 32,
+    "packSize": "32 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 2.55,
+    "badge": "Heat pack",
+    "spiceLevel": "Medium spicy",
+    "description": "32 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Kimchi chicken",
+      "Mala beef",
+      "Chili crisp"
+    ]
+  },
+  {
+    "mealId": "meal_035",
+    "mealName": "Study Group Party Tray Batch 2",
+    "category": "Party Trays",
+    "price": 48.5,
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 60,
+    "packSize": "60 pcs",
+    "freezerLife": "24 days",
+    "resellerMargin": 3.88,
+    "badge": "Party tray",
+    "spiceLevel": "Mild",
+    "description": "60 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chicken",
+      "Pork",
+      "Sesame sauce"
+    ]
+  },
+  {
+    "mealId": "meal_036",
+    "mealName": "Club Night Party Tray Batch 2",
+    "category": "Party Trays",
+    "price": 62.1,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 80,
+    "packSize": "80 pcs",
+    "freezerLife": "24 days",
+    "resellerMargin": 4.97,
+    "badge": "Large tray",
+    "spiceLevel": "Mild",
+    "description": "80 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Mixed fillings",
+      "Garlic soy",
+      "Chili oil"
+    ]
+  },
+  {
+    "mealId": "meal_037",
+    "mealName": "Family Freezer Party Tray Batch 2",
+    "category": "Party Trays",
+    "price": 54.9,
+    "rating": 4.1,
+    "image": "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 72,
+    "packSize": "72 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 4.39,
+    "badge": "Family pack",
+    "spiceLevel": "Mild",
+    "description": "72 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Pork",
+      "Chicken",
+      "Mushroom"
+    ]
+  },
+  {
+    "mealId": "meal_038",
+    "mealName": "Hotpot Dumpling Tray Batch 2",
+    "category": "Party Trays",
+    "price": 52.5,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 70,
+    "packSize": "70 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 4.2,
+    "badge": "Hotpot-ready",
+    "spiceLevel": "Mild",
+    "description": "70 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chicken",
+      "Prawn",
+      "Soup herbs"
+    ]
+  },
+  {
+    "mealId": "meal_039",
+    "mealName": "Soy Ginger Dip Bottle Batch 2",
+    "category": "Sauces",
+    "price": 9.7,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1626776876729-bab4369a5a5a?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 250,
+    "packSize": "250 ml",
+    "freezerLife": "45 days",
+    "resellerMargin": 0.78,
+    "badge": "Sauce",
+    "spiceLevel": "Mild",
+    "description": "250 ml frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Soy sauce",
+      "Ginger",
+      "Rice vinegar"
+    ]
+  },
+  {
+    "mealId": "meal_040",
+    "mealName": "Chili Crisp Jar Batch 2",
+    "category": "Sauces",
+    "price": 10.5,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1625938145744-e380515399c7?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 180,
+    "packSize": "180 g",
+    "freezerLife": "60 days",
+    "resellerMargin": 0.84,
+    "badge": "Sauce",
+    "spiceLevel": "Mild",
+    "description": "180 g frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chili flakes",
+      "Garlic",
+      "Sesame"
+    ]
+  },
+  {
+    "mealId": "meal_041",
+    "mealName": "Garlic Sesame Sauce Batch 2",
+    "category": "Sauces",
+    "price": 10.1,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 220,
+    "packSize": "220 ml",
+    "freezerLife": "45 days",
+    "resellerMargin": 0.81,
+    "badge": "Sauce",
+    "spiceLevel": "Mild",
+    "description": "220 ml frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Sesame paste",
+      "Garlic",
+      "Soy"
+    ]
+  },
+  {
+    "mealId": "meal_042",
+    "mealName": "Mala Pepper Sauce Batch 2",
+    "category": "Sauces",
+    "price": 12.1,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 180,
+    "packSize": "180 g",
+    "freezerLife": "60 days",
+    "resellerMargin": 0.97,
+    "badge": "Sauce",
+    "spiceLevel": "Medium spicy",
+    "description": "180 g frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Sichuan pepper",
+      "Chili oil",
+      "Spices"
+    ]
+  },
+  {
+    "mealId": "meal_043",
+    "mealName": "Reseller Starter Case Batch 2",
+    "category": "Reseller Cases",
+    "price": 160,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 10,
+    "packSize": "10 packs",
+    "freezerLife": "30 days",
+    "resellerMargin": 28.8,
+    "badge": "Reseller case",
+    "spiceLevel": "Mild",
+    "description": "10 packs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Mixed best sellers",
+      "Labels",
+      "Seller sheet"
+    ]
+  },
+  {
+    "mealId": "meal_044",
+    "mealName": "Reseller Campus Case Batch 2",
+    "category": "Reseller Cases",
+    "price": 300.6,
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 20,
+    "packSize": "20 packs",
+    "freezerLife": "30 days",
+    "resellerMargin": 54.11,
+    "badge": "High margin",
+    "spiceLevel": "Mild",
+    "description": "20 packs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Top sellers",
+      "Sauce bundle",
+      "Order sheet"
+    ]
+  },
+  {
+    "mealId": "meal_045",
+    "mealName": "Reseller Event Case Batch 2",
+    "category": "Reseller Cases",
+    "price": 441.2,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1626776876729-bab4369a5a5a?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 30,
+    "packSize": "30 packs",
+    "freezerLife": "30 days",
+    "resellerMargin": 79.42,
+    "badge": "Event case",
+    "spiceLevel": "Mild",
+    "description": "30 packs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Party tray mix",
+      "Sauce bundle",
+      "Batch labels"
+    ]
+  },
+  {
+    "mealId": "meal_046",
+    "mealName": "Mini Bamboo Steamer Add-on Batch 2",
+    "category": "Add-ons",
+    "price": 14.9,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1625938145744-e380515399c7?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 1,
+    "packSize": "1 unit",
+    "freezerLife": "Reusable",
+    "resellerMargin": 1.19,
+    "badge": "Add-on",
+    "spiceLevel": "Mild",
+    "description": "1 unit frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Bamboo steamer",
+      "Liner sheets"
+    ]
+  },
+  {
+    "mealId": "meal_047",
+    "mealName": "Freezer Label Sticker Set Batch 2",
+    "category": "Add-ons",
+    "price": 7.5,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 40,
+    "packSize": "40 labels",
+    "freezerLife": "Reusable",
+    "resellerMargin": 0.6,
+    "badge": "Add-on",
+    "spiceLevel": "Mild",
+    "description": "40 labels frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Date labels",
+      "Flavor labels"
+    ]
+  },
+  {
+    "mealId": "meal_048",
+    "mealName": "Campus Delivery Cooler Bag Batch 2",
+    "category": "Add-ons",
+    "price": 22.1,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 1,
+    "packSize": "1 bag",
+    "freezerLife": "Reusable",
+    "resellerMargin": 1.77,
+    "badge": "Add-on",
+    "spiceLevel": "Mild",
+    "description": "1 bag frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Insulated bag",
+      "Cold insert"
+    ]
+  },
+  {
+    "mealId": "meal_049",
+    "mealName": "Signature Chicken Dumpling Pack Batch 3",
+    "category": "Dumpling Packs",
+    "price": 22.9,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 24,
+    "packSize": "24 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 1.83,
+    "badge": "Best seller",
+    "spiceLevel": "Mild",
+    "description": "24 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Chicken thigh",
+      "Chives",
+      "Ginger soy"
+    ]
+  },
+  {
+    "mealId": "meal_050",
+    "mealName": "Pork and Cabbage Freezer Pack Batch 3",
+    "category": "Dumpling Packs",
+    "price": 24.5,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=700&auto=format&fit=crop&q=85",
+    "prepTime": 24,
+    "packSize": "24 pcs",
+    "freezerLife": "30 days",
+    "resellerMargin": 1.96,
+    "badge": "Campus favorite",
+    "spiceLevel": "Mild",
+    "description": "24 pcs frozen dumpling pack for student orders, family freezer stock, or campus reseller batches. Ships cold with clear cooking and storage notes.",
+    "ingredients": [
+      "Pork shoulder",
+      "Napa cabbage",
+      "White pepper"
+    ]
+  }
+]
