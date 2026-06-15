@@ -78,7 +78,7 @@ export function renderMealCard(meal) {
             <span class="text-xl font-bold text-primary font-display">RM ${meal.price.toFixed(2)}</span>
           </div>
           <button 
-            class="bg-accent hover:bg-accent-dark text-white min-w-11 h-11 rounded-lg shadow-accent-glow hover:shadow-none transition-all flex items-center justify-center cursor-pointer active:scale-95"
+            class="bg-accent hover:bg-accent-dark text-white min-w-11 h-11 rounded-lg shadow-accent-glow backdrop-blur-sm hover:shadow-premium-hover transition-all flex items-center justify-center cursor-pointer active:scale-95"
             onclick="event.stopPropagation(); window.app.addToCart('${meal.mealId}')"
             aria-label="Add ${meal.mealName} to Cart"
           >
@@ -95,9 +95,9 @@ export function renderMealCard(meal) {
 export function renderCategoryChips(categories, activeCategory, onSelectCallbackName) {
   return categories.map(cat => {
     const isActive = cat === activeCategory;
-    const bgClass = isActive 
-      ? 'bg-primary text-background shadow-md border-primary' 
-      : 'bg-background-card hover:bg-white text-secondary border border-background-dark';
+    const bgClass = isActive
+      ? 'bg-primary text-background shadow-premium border-primary'
+      : 'bg-background-card/90 hover:bg-white text-secondary border border-background-dark shadow-sm backdrop-blur-sm hover:shadow-premium';
     return `
       <button 
         onclick="window.app.${onSelectCallbackName}('${cat}')"

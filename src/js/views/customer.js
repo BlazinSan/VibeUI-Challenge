@@ -162,7 +162,7 @@ export const customerViews = {
       <div class="space-y-10 md:space-y-14 animate-fade-scroll">
         <!-- Immersive hero -->
         <section data-reveal class="relative overflow-hidden rounded-3xl border border-background-dark shadow-premium bg-primary text-background">
-          <img src="${S(heroMeal?.image || '/assets/images/dumplings-plate.png')}" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-25" />
+          <img src="/assets/images/dumpling-sketch-pattern.png" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-[0.08] mix-blend-screen" />
           <div class="absolute inset-0 bg-gradient-to-tr from-primary via-primary/90 to-primary/40"></div>
           <div class="relative grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 p-6 md:p-10 lg:p-12 items-center">
             <div class="space-y-6">
@@ -178,7 +178,7 @@ export const customerViews = {
               </p>
               <div class="flex flex-col sm:flex-row gap-3">
                 <button onclick="window.app.switchView('catalog')" class="button-accent min-h-12 text-base px-7"><span data-i18n="home.browse">Browse Menu</span></button>
-                <button onclick="window.app.switchView('apply')" class="inline-flex items-center justify-center gap-2 rounded-lg border border-background/30 bg-background/5 px-6 py-3 text-sm font-bold text-background transition-all hover:bg-background/15 active:scale-95 min-h-12"><span data-i18n="home.reseller">Become a reseller</span></button>
+                <button onclick="window.app.switchView('apply')" class="inline-flex items-center justify-center gap-2 rounded-lg border border-background/30 bg-background/10 px-6 py-3 text-sm font-bold text-background shadow-premium backdrop-blur-md transition-all hover:bg-background/15 hover:shadow-premium-hover active:scale-95 min-h-12"><span data-i18n="home.reseller">Become a reseller</span></button>
               </div>
               <div class="grid grid-cols-3 gap-3 max-w-md pt-2">
                 <div class="rounded-xl bg-background/10 px-3 py-3 backdrop-blur-sm">
@@ -195,13 +195,21 @@ export const customerViews = {
                 </div>
               </div>
             </div>
-            <div class="relative hidden lg:block">
-              <div class="relative aspect-square rounded-2xl overflow-hidden border border-background/20 shadow-2xl">
-                <img src="${S(heroMeal?.image || '/assets/images/dumplings-plate.png')}" alt="${S(heroMeal?.mealName || 'HotMealBa dumplings')}" class="h-full w-full object-cover" />
+            <div class="hero-art-stage hidden lg:block">
+              <div class="hero-woman-frame">
+                <img src="/assets/images/hero-woman-frame.png" alt="Chinese frame illustration" />
               </div>
-              <div class="absolute -bottom-4 -left-4 rounded-2xl bg-background-card text-primary border border-background-dark px-4 py-3 shadow-premium">
+              <div class="hero-sticky-note" aria-label="${S(heroMeal?.mealName || 'HotMealBa dumplings')} sticky note">
+                <span class="hero-note-tape"></span>
+                <img src="${S(heroMeal?.image || '/assets/images/dumplings-plate.png')}" alt="${S(heroMeal?.mealName || 'HotMealBa dumplings')}" />
+              </div>
+              <div class="hero-sketch-note" aria-hidden="true">
+                <img src="/assets/images/dumpling-sketch-pattern.png" alt="" />
+              </div>
+              <div class="absolute -bottom-4 -left-4 rounded-2xl bg-background-card/95 backdrop-blur-md text-primary border border-background-dark px-4 py-3 shadow-premium">
                 <span class="block text-[11px] font-bold uppercase text-accent">Starter bundle</span>
                 <span class="block font-display text-lg text-primary">48 pcs + 2 sauces</span>
+                <span class="block text-sm font-extrabold text-success-dark">26.7rm</span>
               </div>
             </div>
           </div>
@@ -363,13 +371,10 @@ export const customerViews = {
           </div>
         </section>
 
-        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-5">
+        <div class="grid grid-cols-1 gap-5">
           <main id="catalog-results">
             ${this.catalogResultsHtml(results)}
           </main>
-          <aside class="hidden lg:block">
-            ${renderMiniCartPanel()}
-          </aside>
         </div>
       </div>
     `;
@@ -581,7 +586,11 @@ export const customerViews = {
       if (!meal) return '';
       const was = (meal.price * 1.12);
       return `
-        <div class="flex items-center gap-3 p-3 bg-background rounded-2xl border border-background-dark shadow-sm">
+        <div class="cart-swipe-item relative overflow-hidden rounded-2xl" data-meal-id="${meal.mealId}">
+          <button onclick="window.app.removeFromCart('${meal.mealId}')" class="cart-swipe-delete" aria-label="Delete ${S(meal.mealName)}">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79"/></svg>
+          </button>
+          <div class="cart-swipe-card flex items-center gap-3 p-3 bg-background rounded-2xl border border-background-dark shadow-sm">
           <img src="${meal.image}" alt="${S(meal.mealName)}" class="w-16 h-16 rounded-xl object-cover border border-background-dark flex-shrink-0" />
           <div class="flex-grow min-w-0">
             <h4 class="font-display text-base text-primary truncate leading-tight">${S(meal.mealName)}</h4>
@@ -596,9 +605,10 @@ export const customerViews = {
             <span class="text-sm font-bold text-primary w-5 text-center">${item.quantity}</span>
             <button onclick="window.app.updateCartQuantity('${meal.mealId}', ${item.quantity + 1})" class="w-8 h-8 bg-accent text-white rounded-full shadow-accent-glow transition-all flex items-center justify-center cursor-pointer text-base font-bold active:scale-90" aria-label="Increase">+</button>
           </div>
-          <button onclick="window.app.removeFromCart('${meal.mealId}')" class="text-secondary/60 hover:text-danger p-1.5 rounded-lg hover:bg-danger/5 transition-colors cursor-pointer flex-shrink-0" aria-label="Remove item">
+          <button onclick="window.app.removeFromCart('${meal.mealId}')" class="cart-inline-remove" aria-label="Remove item">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79"/></svg>
           </button>
+          </div>
         </div>
       `;
     }).join('');
@@ -618,6 +628,69 @@ export const customerViews = {
       </div>
       <button onclick="window.app.switchView('checkout'); window.app.closeCartDrawer();" class="w-full button-accent min-h-12 text-base"><span data-i18n="cta.checkout">Go to checkout</span></button>
     `;
+    this.bindCartSwipeGestures();
+  },
+
+  bindCartSwipeGestures() {
+    if (window.matchMedia('(min-width: 768px)').matches) return;
+    const items = document.querySelectorAll('.cart-swipe-item');
+    let openItem = null;
+
+    items.forEach((item) => {
+      const card = item.querySelector('.cart-swipe-card');
+      if (!card || item.dataset.swipeBound === '1') return;
+      item.dataset.swipeBound = '1';
+      let startX = 0;
+      let startY = 0;
+      let currentX = 0;
+      let dragging = false;
+      let horizontal = false;
+
+      const setX = (x) => {
+        currentX = Math.max(0, Math.min(88, x));
+        card.style.transform = `translateX(${currentX}px)`;
+        item.classList.toggle('is-open', currentX > 44);
+      };
+
+      const close = () => setX(0);
+      const open = () => {
+        if (openItem && openItem !== item) openItem.dispatchEvent(new CustomEvent('cart-swipe-close'));
+        openItem = item;
+        setX(78);
+      };
+
+      item.addEventListener('cart-swipe-close', close);
+      card.addEventListener('pointerdown', (event) => {
+        if (event.pointerType === 'mouse') return;
+        startX = event.clientX;
+        startY = event.clientY;
+        dragging = true;
+        horizontal = false;
+        card.setPointerCapture?.(event.pointerId);
+      });
+      card.addEventListener('pointermove', (event) => {
+        if (!dragging) return;
+        const dx = event.clientX - startX;
+        const dy = event.clientY - startY;
+        if (!horizontal) {
+          if (Math.abs(dx) < 7 && Math.abs(dy) < 7) return;
+          horizontal = Math.abs(dx) > Math.abs(dy);
+          if (!horizontal) {
+            dragging = false;
+            return;
+          }
+        }
+        event.preventDefault();
+        setX(dx);
+      });
+      const finish = () => {
+        if (!dragging) return;
+        dragging = false;
+        currentX > 42 ? open() : close();
+      };
+      card.addEventListener('pointerup', finish);
+      card.addEventListener('pointercancel', finish);
+    });
   },
 
   renderCheckout(container) {

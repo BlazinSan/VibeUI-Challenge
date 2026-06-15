@@ -110,8 +110,10 @@ class App {
     this.navMobile = null;
     this.sidebarAdmin = null;
     this.cartDrawer = null;
+    this.cartBackdrop = null;
     this.detailsModal = null;
     this.isRendering = false;
+    this.isPullRefreshing = false;
   }
 
   async start() {
@@ -120,6 +122,7 @@ class App {
     this.navMobile = document.getElementById('nav-mobile');
     this.sidebarAdmin = document.getElementById('sidebar-admin');
     this.cartDrawer = document.getElementById('cart-drawer');
+    this.cartBackdrop = document.getElementById('cart-backdrop');
     this.detailsModal = document.getElementById('details-modal');
 
     store.subscribe((state) => this.render(state));
@@ -130,6 +133,7 @@ class App {
     this.installScrollReveal();
     this.installScrollFocus();
     this.installCanvasBackground();
+    this.installPullToRefresh();
 
     this.applyDocumentChrome(store.state);
     const initialView = this.viewFromLocation();
@@ -249,11 +253,13 @@ class App {
 
   openCartDrawer() {
     this.cartDrawer.classList.remove('translate-x-full');
+    this.cartBackdrop?.classList.remove('hidden');
     customerViews.renderCartDrawer();
   }
 
   closeCartDrawer() {
     this.cartDrawer.classList.add('translate-x-full');
+    this.cartBackdrop?.classList.add('hidden');
   }
 
   addToCart(mealId, qty = 1) {
@@ -316,8 +322,8 @@ class App {
     contentWrapper.classList.remove('w-full', 'px-6', 'md:px-10', 'max-w-7xl', 'max-w-[96rem]', 'xl:px-10');
     contentWrapper.classList.add(state.activeView === 'home' ? 'max-w-[96rem]' : 'max-w-7xl', 'px-4', 'md:px-8');
     if (state.activeView === 'home') contentWrapper.classList.add('xl:px-10');
-    mainBody.classList.remove('lg:pl-64', 'pt-6');
-    mainBody.classList.add('pt-24');
+    mainBody.classList.remove('lg:pl-64', 'lg:pl-24', 'pt-6');
+    mainBody.classList.add('pt-24', 'lg:pl-24');
 
     this.updateHeaderCartBadge(store.getCartCount());
     this.updateHeaderActiveLinks(state.activeView);
@@ -432,6 +438,74 @@ class App {
   installCanvasBackground() {
     window.addEventListener('resize', () => this.drawDumplingCanvas());
     this.drawDumplingCanvas();
+  }
+
+  async refreshCurrentView() {
+    const activeView = store.state.activeView;
+    const selectedMealId = store.state.selectedMealId;
+    await store.init();
+    store.setState({ activeView, selectedMealId });
+  }
+
+  installPullToRefresh() {
+    const indicator = document.getElementById('pull-refresh-indicator');
+    if (!indicator) return;
+    let startY = 0;
+    let distance = 0;
+    let pulling = false;
+    const threshold = 74;
+
+    const reset = () => {
+      distance = 0;
+      pulling = false;
+      indicator.classList.remove('is-visible', 'is-ready', 'is-refreshing');
+      indicator.style.setProperty('--pull-distance', '0px');
+      indicator.querySelector('.pull-refresh-text').textContent = 'Pull to refresh';
+    };
+
+    window.addEventListener('touchstart', (event) => {
+      if (this.isPullRefreshing || window.matchMedia('(min-width: 768px)').matches) return;
+      const target = event.target;
+      if (
+        window.scrollY > 1 ||
+        target.closest('input, textarea, select, button, [data-native-scroll], #cart-drawer, #details-modal')
+      ) return;
+      startY = event.touches[0].clientY;
+      pulling = true;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (event) => {
+      if (!pulling || this.isPullRefreshing) return;
+      const dy = event.touches[0].clientY - startY;
+      if (dy <= 0) return;
+      distance = Math.min(118, dy * 0.58);
+      indicator.style.setProperty('--pull-distance', `${distance}px`);
+      indicator.classList.add('is-visible');
+      indicator.classList.toggle('is-ready', distance >= threshold);
+      indicator.querySelector('.pull-refresh-text').textContent = distance >= threshold ? 'Release to refresh' : 'Pull to refresh';
+      if (dy > 8) event.preventDefault();
+    }, { passive: false });
+
+    window.addEventListener('touchend', async () => {
+      if (!pulling) return;
+      if (distance < threshold) {
+        reset();
+        return;
+      }
+      this.isPullRefreshing = true;
+      indicator.classList.add('is-refreshing');
+      indicator.querySelector('.pull-refresh-text').textContent = 'Refreshing';
+      try {
+        await this.refreshCurrentView();
+      } finally {
+        setTimeout(() => {
+          this.isPullRefreshing = false;
+          reset();
+        }, 420);
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchcancel', reset, { passive: true });
   }
 
   drawDumplingCanvas() {

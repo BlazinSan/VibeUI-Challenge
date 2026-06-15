@@ -141,19 +141,19 @@ html.lenis, html.lenis body { height: auto; }
   }
 
   .button-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-bold text-background transition-all hover:bg-primary-light active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-bold text-background shadow-premium backdrop-blur-sm transition-all hover:bg-primary-light hover:shadow-premium-hover active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .button-accent {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-bold text-white shadow-accent-glow transition-all hover:bg-accent-dark hover:shadow-none active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-bold text-white shadow-accent-glow backdrop-blur-sm transition-all hover:bg-accent-dark hover:shadow-premium-hover active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .button-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-background-dark bg-background-card px-5 py-3 text-sm font-bold text-primary transition-all hover:border-accent/40 hover:bg-background active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-background-dark bg-background-card/90 px-5 py-3 text-sm font-bold text-primary shadow-premium backdrop-blur-sm transition-all hover:border-accent/40 hover:bg-background hover:shadow-premium-hover active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .theme-toggle {
-    @apply relative inline-flex h-10 w-[76px] items-center rounded-full border border-background-dark bg-background-card p-1 shadow-sm transition-colors;
+    @apply relative inline-flex h-10 w-[76px] items-center rounded-full border border-background-dark bg-background-card/90 p-1 shadow-premium backdrop-blur-md transition-colors;
   }
 
   .theme-toggle-thumb {
@@ -166,7 +166,7 @@ html.lenis, html.lenis body { height: auto; }
 
   /* Compact icon button variant (used for theme/lang/admin on mobile). */
   .icon-button {
-    @apply grid h-11 w-11 place-items-center rounded-lg border border-background-dark bg-background-card text-primary shadow-sm transition-all hover:text-accent hover:border-accent/40 active:scale-95;
+    @apply grid h-11 w-11 place-items-center rounded-lg border border-background-dark bg-background-card/90 text-primary shadow-premium backdrop-blur-sm transition-all hover:text-accent hover:border-accent/40 hover:shadow-premium-hover active:scale-95;
   }
 
   /* Desktop top-nav links: padded pills with fill + shadow, echoing mobile nav. */
@@ -183,9 +183,11 @@ html.lenis, html.lenis body { height: auto; }
     min-height: 380px;
     touch-action: pan-y;
     perspective: 1400px;
+    user-select: none;
+    -webkit-user-select: none;
   }
   .review-card {
-    @apply absolute inset-x-0 top-0 rounded-3xl border border-background-dark p-6 md:p-8 shadow-premium overflow-hidden;
+    @apply absolute inset-x-0 top-0 select-none rounded-3xl border border-background-dark p-6 md:p-8 shadow-premium overflow-hidden;
     /* Glossy glass: a soft top-left highlight layered over the card surface. */
     background:
       linear-gradient(150deg, rgb(255 255 255 / 0.16) 0%, rgb(255 255 255 / 0) 42%),
@@ -193,6 +195,7 @@ html.lenis, html.lenis body { height: auto; }
     transform-origin: center bottom;
     transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease;
     will-change: transform, opacity;
+    -webkit-user-select: none;
   }
   [data-theme="dark"] .review-card {
     background:
@@ -228,6 +231,217 @@ html.lenis, html.lenis body { height: auto; }
 
   .mobile-nav-button.is-active {
     @apply bg-accent text-white shadow-accent-glow;
+  }
+
+  .desktop-side-rail {
+    @apply hidden lg:flex fixed left-5 top-1/2 z-40 -translate-y-1/2 flex-col items-center gap-3 rounded-3xl border border-background-dark bg-background-card/90 p-3 shadow-premium backdrop-blur-xl;
+  }
+
+  .desktop-rail-button {
+    @apply grid h-12 w-12 place-items-center rounded-2xl border border-transparent text-secondary shadow-sm transition-all hover:-translate-y-0.5 hover:bg-background hover:text-primary hover:shadow-premium active:scale-95;
+  }
+
+  .desktop-rail-button.is-active {
+    @apply bg-accent text-white shadow-accent-glow hover:bg-accent hover:text-white;
+  }
+
+  .desktop-rail-button svg {
+    pointer-events: none;
+  }
+
+  .cart-backdrop {
+    @apply fixed inset-0 z-[45] bg-primary-dark/35 backdrop-blur-sm transition-opacity;
+  }
+
+  .cart-swipe-item {
+    @apply bg-danger/10;
+  }
+
+  .cart-swipe-delete {
+    @apply absolute left-0 top-0 bottom-0 z-0 flex w-20 items-center justify-center rounded-2xl bg-danger text-white shadow-premium transition-all;
+  }
+
+  .cart-swipe-card {
+    @apply relative z-10 will-change-transform;
+    touch-action: pan-y;
+    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease;
+  }
+
+  .cart-swipe-item.is-open .cart-swipe-card {
+    @apply shadow-premium-hover;
+  }
+
+  .cart-inline-remove {
+    @apply text-secondary/60 hover:text-danger p-1.5 rounded-lg hover:bg-danger/5 transition-colors cursor-pointer flex-shrink-0;
+  }
+
+  @media (max-width: 767px) {
+    .cart-inline-remove {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    #cart-drawer {
+      top: 92px;
+      right: 32px;
+      bottom: auto;
+      width: min(440px, calc(100vw - 64px));
+      max-height: calc(100vh - 124px);
+      border: 1px solid rgb(var(--color-background-dark) / 1);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 30px 90px -38px rgb(16 24 46 / 0.5);
+      transform: translateX(0);
+      opacity: 1;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.18s ease;
+    }
+
+    #cart-drawer.translate-x-full {
+      transform: translateX(calc(100% + 54px));
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #cart-drawer-items {
+      max-height: min(52vh, 520px);
+    }
+  }
+
+  .loading-skeleton-page {
+    @apply mx-auto w-full max-w-7xl space-y-5 py-2;
+  }
+
+  .loading-skeleton-hero {
+    @apply relative min-h-[420px] overflow-hidden rounded-3xl border border-background-dark bg-background-card shadow-premium;
+  }
+
+  .loading-skeleton-hero span {
+    @apply absolute block rounded-full bg-background-dark/50;
+    animation: shimmer 1.4s infinite linear;
+    background: linear-gradient(90deg, rgb(var(--color-background-dark) / 0.35) 25%, rgb(var(--color-background-card) / 0.9) 50%, rgb(var(--color-background-dark) / 0.35) 75%);
+    background-size: 220% 100%;
+  }
+
+  .loading-skeleton-hero span:nth-child(1) {
+    left: 7%;
+    top: 20%;
+    width: 42%;
+    height: 42px;
+  }
+
+  .loading-skeleton-hero span:nth-child(2) {
+    left: 7%;
+    top: 38%;
+    width: 32%;
+    height: 18px;
+  }
+
+  .loading-skeleton-hero span:nth-child(3) {
+    right: 7%;
+    top: 16%;
+    width: 36%;
+    height: 64%;
+    border-radius: 32px;
+  }
+
+  .loading-skeleton-grid {
+    @apply grid grid-cols-1 gap-4 md:grid-cols-3;
+  }
+
+  .loading-skeleton-hero,
+  .loading-skeleton-grid::before,
+  .loading-skeleton-grid::after,
+  .loading-skeleton-grid > span {
+    background:
+      linear-gradient(90deg, rgb(var(--color-background-dark) / 0.35) 25%, rgb(var(--color-background-card) / 0.9) 50%, rgb(var(--color-background-dark) / 0.35) 75%),
+      rgb(var(--color-background-card) / 1);
+    background-size: 220% 100%;
+    animation: shimmer 1.4s infinite linear;
+  }
+
+  .loading-skeleton-grid::before,
+  .loading-skeleton-grid::after,
+  .loading-skeleton-grid > span {
+    content: "";
+    min-height: 180px;
+    border-radius: 24px;
+    border: 1px solid rgb(var(--color-background-dark) / 1);
+  }
+
+  .loading-skeleton-grid > span {
+    display: block;
+  }
+
+  .pull-refresh-indicator {
+    @apply fixed left-1/2 top-3 z-[60] flex items-center gap-2 rounded-full border border-background-dark bg-background-card/95 px-4 py-2 text-xs font-bold text-primary shadow-premium backdrop-blur-xl;
+    --pull-distance: 0px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, calc(-120% + var(--pull-distance)));
+    transition: opacity 0.16s ease, transform 0.16s ease;
+  }
+
+  .pull-refresh-indicator.is-visible,
+  .pull-refresh-indicator.is-refreshing {
+    opacity: 1;
+  }
+
+  .pull-refresh-indicator.is-ready {
+    @apply border-success/50 text-success-dark;
+  }
+
+  .pull-refresh-ring {
+    @apply h-4 w-4 rounded-full border-2 border-current border-t-transparent;
+  }
+
+  .pull-refresh-indicator.is-refreshing .pull-refresh-ring {
+    animation: pull-spin 0.75s linear infinite;
+  }
+
+  .hero-art-stage {
+    position: relative;
+    min-height: 520px;
+  }
+
+  .hero-woman-frame {
+    @apply absolute inset-y-0 right-6 left-16 overflow-hidden rounded-[2rem] border border-background/20 bg-background-card shadow-premium;
+    transform: rotate(1.5deg);
+  }
+
+  .hero-woman-frame img,
+  .hero-sticky-note img,
+  .hero-sketch-note img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-woman-frame img {
+    filter: blur(2.4px) saturate(0.92) brightness(1.02);
+    transform: scale(1.045);
+  }
+
+  .hero-sticky-note {
+    @apply absolute right-0 top-8 w-[58%] rounded-2xl border border-background-dark bg-[#fffaf0] p-3 shadow-premium-hover;
+    transform: rotate(-5deg);
+  }
+
+  .hero-sticky-note img {
+    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+  }
+
+  .hero-note-tape {
+    @apply absolute left-1/2 top-[-14px] h-7 w-24 -translate-x-1/2 rounded-sm bg-accent-light/70 shadow-premium;
+    transform: translateX(-50%) rotate(3deg);
+  }
+
+  .hero-sketch-note {
+    @apply absolute bottom-14 left-0 w-[34%] overflow-hidden rounded-2xl border border-background-dark bg-[#efe2c6] p-2 shadow-premium;
+    aspect-ratio: 1 / 0.72;
+    transform: rotate(7deg);
   }
 
   .note-card {
