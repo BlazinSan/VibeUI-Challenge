@@ -1,10 +1,10 @@
-// customer.js - Customer screens for Dumpling Desk
+// customer.js - Customer screens for HotMealBa
 
-import { store } from '../store.js';
+import { store, escapeHtml, sanitizeText, sanitizePhone, sanitizeOrderId } from '../store.js';
 import { dataLoader } from '../data-loader.js';
 import { renderMealCard, renderCategoryChips, renderRatingStars } from '../components/cards.js';
 import { renderPagination } from '../components/table.js';
-import { renderTrackingStepper, renderMockMap } from '../components/tracking.js';
+import { renderTrackingStepper, renderLeafletMap, mountLeafletTrackingMap } from '../components/tracking.js';
 
 const CATEGORIES = [
   'All',
@@ -21,7 +21,7 @@ const RM = (value) => `RM ${Number(value || 0).toFixed(2)}`;
 const statusLabels = {
   received: 'Order received',
   preparing: 'Payment confirmed',
-  cooking: 'Frozen packs prepared',
+  cooking: 'Order packed',
   out_for_delivery: 'Out for shipment',
   delivered: 'Delivered'
 };
@@ -43,6 +43,24 @@ let catalogFilters = {
 };
 
 let trackOrderResult = null;
+let noteIndex = 0;
+
+const S = escapeHtml;
+
+function deliveryWindows() {
+  const now = new Date();
+  const windows = [
+    { label: 'Today, 10 AM - 1 PM', endHour: 13 },
+    { label: 'Today, 2 PM - 4 PM', endHour: 16 },
+    { label: 'Today, 4 PM - 7 PM', endHour: 19 },
+    { label: 'Tomorrow, 10 AM - 1 PM', endHour: null },
+    { label: 'Tomorrow, 2 PM - 6 PM', endHour: null }
+  ];
+  return windows.map((item) => ({
+    ...item,
+    disabled: item.endHour !== null && now.getHours() >= item.endHour
+  }));
+}
 
 function orderLineItems(order) {
   if (order?.lineItems?.length) return order.lineItems;
@@ -53,6 +71,49 @@ function orderLineItems(order) {
 function orderPrimaryMeal(order) {
   const first = orderLineItems(order)[0];
   return first ? store.state.meals.find((m) => m.mealId === first.mealId) : null;
+}
+
+function renderMiniCartPanel() {
+  const cart = store.state.cart;
+  const subtotal = store.getCartTotal();
+  const deliveryFee = cart.length ? 6 : 0;
+  const total = subtotal + deliveryFee;
+
+  return `
+    <div class="sticky top-24 rounded-lg border border-background-dark bg-background-card p-4 shadow-premium space-y-4">
+      <div class="rounded-lg border border-background-dark bg-background p-4">
+        <h2 class="font-display text-2xl text-primary">Cart</h2>
+        <p class="text-xs text-secondary mt-1">${cart.length ? `${store.getCartCount()} item(s) selected` : 'Your cart is empty'}</p>
+      </div>
+      <div class="space-y-3 max-h-[320px] overflow-y-auto pr-1" data-native-scroll>
+        ${cart.length === 0 ? `
+          <button onclick="window.app.switchView('catalog')" class="w-full rounded-lg border border-dashed border-background-dark bg-background p-5 text-center text-xs text-secondary">
+            Browse Menu to add items
+          </button>
+        ` : cart.map((item) => {
+          const meal = store.state.meals.find((m) => m.mealId === item.mealId);
+          if (!meal) return '';
+          return `
+            <div class="flex items-center gap-3 rounded-lg border border-background-dark bg-background p-3">
+              <img src="${S(meal.image)}" alt="${S(meal.mealName)}" class="h-12 w-12 rounded-lg object-cover" />
+              <div class="min-w-0 flex-1">
+                <p class="text-sm font-bold text-primary line-clamp-1">${S(meal.mealName)}</p>
+                <p class="text-xs text-secondary">Qty ${item.quantity} · ${RM(meal.price * item.quantity)}</p>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+      <div class="space-y-2 border-t border-background-dark pt-4 text-sm">
+        <div class="flex justify-between text-secondary"><span>Subtotal</span><span>${RM(subtotal)}</span></div>
+        <div class="flex justify-between text-secondary"><span>Delivery</span><span>${RM(deliveryFee)}</span></div>
+        <div class="flex justify-between text-primary font-bold"><span>Total</span><span>${RM(total)}</span></div>
+      </div>
+      <button onclick="window.app.switchView('${cart.length ? 'checkout' : 'catalog'}')" class="w-full ${cart.length ? 'button-accent' : 'button-primary'} min-h-11">
+        ${cart.length ? 'Go to checkout' : 'Browse Menu'}
+      </button>
+    </div>
+  `;
 }
 
 export const customerViews = {
@@ -85,26 +146,26 @@ export const customerViews = {
               </div>
               <div class="rounded-lg border border-background-dark bg-background px-4 py-3">
                 <span class="block font-bold text-primary">Shipment</span>
-                <span class="text-secondary">Frozen packs to your address</span>
+                <span class="text-secondary">Meals and packs to your address</span>
               </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-[1fr_220px] gap-6 items-end">
               <div class="space-y-5">
-                <span class="text-xs font-bold uppercase text-accent">Campus frozen dumpling orders</span>
+                <span class="text-xs font-bold uppercase text-accent">Campus meals and dumplings</span>
                 <h1 class="font-display text-5xl md:text-6xl lg:text-7xl leading-none text-primary">
-                  Dumpling Desk
+                  HotMealBa
                 </h1>
                 <p class="text-sm md:text-base text-secondary leading-relaxed max-w-2xl">
-                  Stock your freezer, collect campus orders, or build a student side income with ready-to-ship dumpling packs.
+                  Order handmade dumplings, noodles, skewers, and reseller bundles with clean checkout and real order tracking.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-3">
-                  <button onclick="window.app.switchView('catalog')" class="button-accent min-h-12">Order packs</button>
+                  <button onclick="window.app.switchView('catalog')" class="button-accent min-h-12">Browse Menu</button>
                   <button onclick="window.app.switchView('apply')" class="button-ghost min-h-12">Become a reseller</button>
                 </div>
               </div>
               <div class="relative min-h-[220px] rounded-lg overflow-hidden border border-background-dark bg-background">
-                <img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=900&auto=format&fit=crop&q=85" alt="Frozen dumpling tray" class="absolute inset-0 h-full w-full object-cover" />
+                <img src="/assets/images/dumplings-plate.png" alt="HotMealBa dumplings" class="absolute inset-0 h-full w-full object-cover" />
                 <div class="absolute left-3 bottom-3 rounded-lg bg-background-card/95 border border-background-dark px-3 py-2 text-xs shadow-premium">
                   <span class="block font-bold text-primary">Starter bundle</span>
                   <span class="text-secondary">48 pcs + 2 sauces</span>
@@ -117,7 +178,7 @@ export const customerViews = {
             <div class="rounded-lg border border-background-dark bg-primary p-5 text-background shadow-premium">
               <span class="text-xs uppercase text-background/70">Today only</span>
               <h2 class="font-display text-3xl text-background mt-1">15% off campus bundles</h2>
-              <p class="text-sm text-background/70 mt-2">Discounted packs are ready above the fold so ordering starts quickly.</p>
+              <p class="text-sm text-background/70 mt-2">Discounted menu bundles are ready above the fold so ordering starts quickly.</p>
             </div>
             <div class="grid grid-cols-3 gap-3">
               <div class="rounded-lg border border-background-dark bg-background-card p-4">
@@ -140,9 +201,9 @@ export const customerViews = {
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4">
             <div>
               <span class="text-xs font-bold uppercase text-accent">Discounted quick picks</span>
-              <h2 class="font-display text-3xl md:text-4xl text-primary">Featured freezer packs</h2>
+              <h2 class="font-display text-3xl md:text-4xl text-primary">Featured HotMealBa picks</h2>
             </div>
-            <button onclick="window.app.switchView('catalog')" class="button-ghost min-h-11">View all packs</button>
+            <button onclick="window.app.switchView('catalog')" class="button-ghost min-h-11">View full Menu</button>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             ${discountedMeals.map((meal, index) => `
@@ -177,7 +238,7 @@ export const customerViews = {
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4">
             <div>
               <span class="text-xs font-bold uppercase text-accent">Best rated</span>
-              <h2 class="font-display text-3xl md:text-4xl text-primary">Popular dumpling packs</h2>
+              <h2 class="font-display text-3xl md:text-4xl text-primary">Popular menu items</h2>
             </div>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -188,11 +249,15 @@ export const customerViews = {
         <section class="section-reveal grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-5" style="animation-delay:260ms">
           <div class="rounded-lg border border-background-dark bg-background-card p-5 md:p-6 shadow-premium">
             <span class="text-xs font-bold uppercase text-accent">Fast reorder</span>
-            <h2 class="font-display text-3xl text-primary mt-1">Repeat a recent pack</h2>
-            <p class="text-sm text-secondary mt-2">Recent simulated orders stay one tap away for quick-pick ordering.</p>
+            <h2 class="font-display text-3xl text-primary mt-1">Repeat a recent order</h2>
+            <p class="text-sm text-secondary mt-2">Only orders created in this app appear here.</p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            ${recentOrders.map((order) => {
+            ${recentOrders.length === 0 ? `
+              <div class="md:col-span-3 rounded-lg border border-background-dark bg-background-card p-5 text-sm text-secondary">
+                No saved orders yet. Place an order and it will appear here for quick reorder.
+              </div>
+            ` : recentOrders.map((order) => {
               if (!order.meal) return '';
               return `
                 <button onclick="window.app.addToCart('${order.meal.mealId}')" class="text-left rounded-lg border border-background-dark bg-background-card p-4 hover:border-accent/40 transition-all min-h-[116px]">
@@ -212,9 +277,9 @@ export const customerViews = {
         <section class="section-reveal rounded-lg border border-background-dark bg-background-card p-5 md:p-6 shadow-premium" style="animation-delay:320ms">
           <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             ${[
-              ['01', 'Choose packs', 'Pick frozen packs, sauces, or reseller cases.'],
+              ['01', 'Choose Menu', 'Pick dumplings, noodles, sauces, or reseller cases.'],
               ['02', 'Add address', 'Enter delivery details and notes before confirmation.'],
-              ['03', 'Confirm payment', 'Select transfer, wallet, or COD simulation.'],
+              ['03', 'Confirm payment', 'Select transfer, wallet, or COD.'],
               ['04', 'Track shipment', 'Watch the order move through clear shipment stages.']
             ].map(([num, title, body]) => `
               <div class="rounded-lg border border-background-dark bg-background p-4">
@@ -237,26 +302,26 @@ export const customerViews = {
         <section class="rounded-lg border border-background-dark bg-background-card p-5 md:p-6 shadow-premium">
           <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
-              <span class="text-xs font-bold uppercase text-accent">Pack menu</span>
-              <h1 class="font-display text-4xl md:text-5xl text-primary">Frozen dumpling board</h1>
-              <p class="text-sm text-secondary mt-2 max-w-2xl">Search packs, compare prices, and add items without losing your place.</p>
+              <span class="text-xs font-bold uppercase text-accent">Menu</span>
+              <h1 class="font-display text-4xl md:text-5xl text-primary">HotMealBa order board</h1>
+              <p class="text-sm text-secondary mt-2 max-w-2xl">Search the Menu, compare prices, and add items without losing your place.</p>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
               <div class="rounded-lg bg-background border border-background-dark px-3 py-2"><strong class="text-primary">${results.total}</strong><span class="block text-secondary">visible</span></div>
               <div class="rounded-lg bg-background border border-background-dark px-3 py-2"><strong class="text-primary">${store.state.orders.length}</strong><span class="block text-secondary">orders</span></div>
-              <div class="rounded-lg bg-background border border-background-dark px-3 py-2"><strong class="text-primary">50</strong><span class="block text-secondary">packs</span></div>
+              <div class="rounded-lg bg-background border border-background-dark px-3 py-2"><strong class="text-primary">${store.state.meals.length}</strong><span class="block text-secondary">items</span></div>
               <div class="rounded-lg bg-background border border-background-dark px-3 py-2"><strong class="text-primary">RM</strong><span class="block text-secondary">pricing</span></div>
             </div>
           </div>
         </section>
 
-        <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-5">
+        <div class="grid grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)_300px] gap-5">
           <aside class="space-y-4">
             <div class="rounded-lg border border-background-dark bg-background-card p-4 shadow-premium space-y-4">
               <div>
                 <label for="catalogSearch" class="text-xs font-bold uppercase text-secondary">Search</label>
                 <div class="relative mt-2">
-                  <input id="catalogSearch" value="${catalogFilters.search}" oninput="window.app.catalogSearch(this.value)" placeholder="Search dumplings, sauce, case..." class="form-input-premium text-sm pl-10 min-h-11" />
+                  <input id="catalogSearch" value="${S(catalogFilters.search)}" oninput="window.app.catalogSearch(this.value)" placeholder="Search dumplings, sauce, noodles..." class="form-input-premium text-sm pl-10 min-h-11" />
                   <svg class="w-4 h-4 text-secondary/50 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </div>
               </div>
@@ -288,7 +353,7 @@ export const customerViews = {
           <main>
             ${results.items.length === 0 ? `
               <div class="rounded-lg border border-background-dark bg-background-card p-10 text-center shadow-premium">
-                <h2 class="font-display text-2xl text-primary">No packs found</h2>
+                <h2 class="font-display text-2xl text-primary">No Menu items found</h2>
                 <p class="text-sm text-secondary mt-2">Try another search or category.</p>
               </div>
             ` : `
@@ -298,6 +363,9 @@ export const customerViews = {
               ${renderPagination(results.page, results.totalPages, 'catalogPage')}
             `}
           </main>
+          <aside class="hidden lg:block">
+            ${renderMiniCartPanel()}
+          </aside>
         </div>
       </div>
     `;
@@ -328,7 +396,11 @@ export const customerViews = {
 
   refreshCatalog() {
     const container = document.getElementById('view-container');
-    if (store.state.activeView === 'catalog' && container) this.renderCatalog(container);
+    if (store.state.activeView === 'catalog' && container) {
+      const y = window.scrollY;
+      this.renderCatalog(container);
+      requestAnimationFrame(() => window.scrollTo(0, y));
+    }
   },
 
   renderMealDetails(mealId) {
@@ -390,7 +462,7 @@ export const customerViews = {
               <span class="text-xs text-secondary">Unit price</span>
               <span class="block font-display text-2xl text-primary">${RM(meal.price)}</span>
             </div>
-            <button onclick="window.app.addToCart('${meal.mealId}'); window.app.closeMealDetails();" class="button-accent min-h-11">Add to basket</button>
+            <button onclick="window.app.addToCart('${meal.mealId}'); window.app.closeMealDetails();" class="button-accent min-h-11">Add to Cart</button>
           </div>
         </div>
       </div>
@@ -407,11 +479,11 @@ export const customerViews = {
       drawerContainer.innerHTML = `
         <div class="py-24 text-center text-secondary">
           <svg class="w-14 h-14 mx-auto mb-4 text-secondary/25" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-8.25-4.5-8.25 4.5m16.5 0l-8.25 4.5m8.25-4.5v9l-8.25 4.5m0-9l-8.25-4.5m8.25 4.5v9m-8.25-13.5v9l8.25 4.5"/></svg>
-          <p class="font-display text-2xl text-primary mb-1">Basket is empty</p>
-          <p class="text-xs text-secondary">Add frozen packs from the menu board.</p>
+          <p class="font-display text-2xl text-primary mb-1">Cart is empty</p>
+          <p class="text-xs text-secondary">Add items from the Menu board.</p>
         </div>
       `;
-      footerContainer.innerHTML = `<button onclick="window.app.closeCartDrawer(); window.app.switchView('catalog');" class="w-full button-primary min-h-12">Browse packs</button>`;
+      footerContainer.innerHTML = `<button onclick="window.app.closeCartDrawer(); window.app.switchView('catalog');" class="w-full button-primary min-h-12">Browse Menu</button>`;
       return;
     }
 
@@ -419,7 +491,7 @@ export const customerViews = {
       const meal = store.state.meals.find((m) => m.mealId === item.mealId);
       if (!meal) return '';
       return `
-        <div class="flex items-center gap-3 p-3 bg-background rounded-lg border border-background-dark">
+        <div class="flex items-center gap-3 p-3 bg-background rounded-lg border border-background-dark shadow-sm">
           <img src="${meal.image}" alt="${meal.mealName}" class="w-16 h-16 rounded-lg object-cover border border-background-dark" />
           <div class="flex-grow min-w-0">
             <h4 class="font-display text-lg text-primary truncate">${meal.mealName}</h4>
@@ -455,9 +527,9 @@ export const customerViews = {
     if (cart.length === 0) {
       container.innerHTML = `
         <div class="animate-fade-scroll rounded-lg border border-background-dark bg-background-card p-10 text-center shadow-premium">
-          <h1 class="font-display text-3xl text-primary">Checkout needs a basket</h1>
-          <p class="text-sm text-secondary mt-2 mb-6">Add at least one dumpling pack before confirming delivery.</p>
-          <button onclick="window.app.switchView('catalog')" class="button-primary min-h-11">Explore packs</button>
+          <h1 class="font-display text-3xl text-primary">Checkout needs a Cart</h1>
+          <p class="text-sm text-secondary mt-2 mb-6">Add at least one Menu item before confirming delivery.</p>
+          <button onclick="window.app.switchView('catalog')" class="button-primary min-h-11">Explore Menu</button>
         </div>
       `;
       return;
@@ -466,30 +538,42 @@ export const customerViews = {
     const subtotal = store.getCartTotal();
     const deliveryFee = 6;
     const total = subtotal + deliveryFee;
+    const windows = deliveryWindows();
+    const hasAvailableWindow = windows.some((item) => !item.disabled);
+    const firstAvailableWindow = windows.find((item) => !item.disabled)?.label;
 
     container.innerHTML = `
       <div class="animate-fade-scroll grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5">
         <main class="rounded-lg border border-background-dark bg-background-card p-5 md:p-7 shadow-premium">
           <span class="text-xs font-bold uppercase text-accent">Delivery and payment</span>
-          <h1 class="font-display text-4xl text-primary mt-1">Confirm your frozen pack order</h1>
+          <h1 class="font-display text-4xl text-primary mt-1">Confirm your HotMealBa order</h1>
           <p class="text-sm text-secondary mt-2">Shipment will be arranged after payment confirmation.</p>
           <form id="checkoutForm" onsubmit="event.preventDefault(); window.app.submitCheckout(new FormData(this))" class="space-y-5 mt-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <label class="space-y-1 text-xs font-bold text-secondary">Full name<input type="text" name="name" required placeholder="e.g. Nur Aina" class="form-input-premium text-sm min-h-12 font-normal" /></label>
-              <label class="space-y-1 text-xs font-bold text-secondary">Phone number<input type="tel" name="phone" required placeholder="e.g. +60 12-345 6789" class="form-input-premium text-sm min-h-12 font-normal" /></label>
+              <label class="space-y-1 text-xs font-bold text-secondary">Phone number<input type="tel" name="phone" inputmode="tel" pattern="[0-9+\\-\\s]*" oninput="window.app.sanitizePhoneInput(this)" required placeholder="e.g. +60 12-345 6789" class="form-input-premium text-sm min-h-12 font-normal" /></label>
             </div>
             <label class="space-y-1 text-xs font-bold text-secondary block">Delivery address<input type="text" name="address" required placeholder="College block, room, street, postcode" class="form-input-premium text-sm min-h-12 font-normal" /></label>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <label class="space-y-1 text-xs font-bold text-secondary">Delivery window<select name="deliveryWindow" required class="form-input-premium text-sm min-h-12 font-normal"><option>Today, 4 PM - 7 PM</option><option>Tomorrow, 10 AM - 1 PM</option><option>Tomorrow, 2 PM - 6 PM</option></select></label>
-              <label class="space-y-1 text-xs font-bold text-secondary">Payment method<select name="payment" required class="form-input-premium text-sm min-h-12 font-normal"><option value="bank">Bank transfer</option><option value="wallet">Digital wallet</option><option value="cod">Cash on delivery</option></select></label>
+              <label class="space-y-1 text-xs font-bold text-secondary">Delivery window<select name="deliveryWindow" required class="form-input-premium text-sm min-h-12 font-normal">
+                ${windows.map((item) => `<option value="${S(item.label)}" ${item.label === firstAvailableWindow ? 'selected' : ''} ${item.disabled ? 'disabled class="time-option-disabled"' : ''}>${S(item.label)}${item.disabled ? ' · passed' : ''}</option>`).join('')}
+              </select></label>
+              <label class="space-y-1 text-xs font-bold text-secondary">Payment method<select name="payment" onchange="window.app.togglePaymentQr(this.value)" required class="form-input-premium text-sm min-h-12 font-normal"><option value="bank">Bank transfer</option><option value="wallet">Digital wallet</option><option value="cod">Cash on delivery</option></select></label>
             </div>
-            <label class="space-y-1 text-xs font-bold text-secondary block">Order notes<textarea name="notes" rows="4" placeholder="Campus pickup notes, freezer pack preference, or reseller batch instructions" class="form-input-premium text-sm font-normal"></textarea></label>
+            <div id="payment-qr-panel" class="rounded-lg border border-background-dark bg-background p-4 flex flex-col sm:flex-row gap-4 items-center">
+              <img src="/assets/images/sample-qr.png" alt="Sample payment QR" class="w-28 h-28 rounded-lg object-contain bg-white border border-background-dark" />
+              <div class="text-sm text-secondary">
+                <strong class="text-primary block">Payment QR</strong>
+                Shown only for bank transfer or digital wallet. Use this sample QR for judging.
+              </div>
+            </div>
+            <label class="space-y-1 text-xs font-bold text-secondary block">Order notes<textarea name="notes" rows="3" placeholder="Campus pickup notes, pack preference, or reseller batch instructions" class="form-input-premium text-sm font-normal resize-y transition-none"></textarea></label>
             <div class="rounded-lg border border-background-dark bg-background p-4 text-sm text-secondary">
-              <strong class="text-primary">Payment confirmation:</strong> this frontend simulates payment review and immediately creates a trackable order for judging.
+              <strong class="text-primary">Payment confirmation:</strong> placing the order saves a real trackable order in this browser.
             </div>
             <div class="flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-background-dark">
-              <button type="button" onclick="window.app.switchView('catalog')" class="button-ghost min-h-12">Back to menu</button>
-              <button type="submit" class="button-accent min-h-12">Confirm order (${RM(total)})</button>
+              <button type="button" onclick="window.app.switchView('catalog')" class="button-ghost min-h-12">Back to Menu</button>
+              <button type="submit" class="button-accent min-h-12" ${hasAvailableWindow ? '' : 'disabled'}>Confirm order (${RM(total)})</button>
             </div>
           </form>
         </main>
@@ -525,19 +609,25 @@ export const customerViews = {
   },
 
   submitCheckout(formData) {
-    const address = formData.get('address')?.trim();
-    const name = formData.get('name')?.trim();
-    const phone = formData.get('phone')?.trim();
-    const payment = formData.get('payment');
-    const deliveryWindow = formData.get('deliveryWindow');
-    const notes = formData.get('notes')?.trim();
+    const address = sanitizeText(formData.get('address'), 180);
+    const name = sanitizeText(formData.get('name'), 80);
+    const phone = sanitizePhone(formData.get('phone'));
+    const payment = sanitizeText(formData.get('payment'), 40);
+    const deliveryWindow = sanitizeText(formData.get('deliveryWindow'), 80);
+    const notes = sanitizeText(formData.get('notes'), 300);
 
-    if (!address || !name || !phone || !payment) {
+    if (!address || !name || !phone || !payment || !deliveryWindow) {
       window.app.showFloatingAlert('Please complete delivery and payment details.', 'info');
       return;
     }
 
-    store.placeOrder({ address, name, phone, payment, window: deliveryWindow, notes, deliveryFee: 6 });
+    if (!/^\+?[\d\-\s]{7,}$/.test(phone)) {
+      window.app.showFloatingAlert('Enter a valid phone number using digits only.', 'info');
+      return;
+    }
+
+    const order = store.placeOrder({ address, name, phone, payment, window: deliveryWindow, notes, deliveryFee: 6 });
+    if (order) window.app.switchView('tracking');
   },
 
   renderTracking(container) {
@@ -548,7 +638,7 @@ export const customerViews = {
           <h1 class="font-display text-3xl text-primary">No active shipment</h1>
           <p class="text-sm text-secondary mt-2 mb-6">Create an order or search an existing order ID.</p>
           <div class="flex flex-col sm:flex-row justify-center gap-3">
-            <button onclick="window.app.switchView('catalog')" class="button-primary min-h-11">Order packs</button>
+            <button onclick="window.app.switchView('catalog')" class="button-primary min-h-11">Browse Menu</button>
             <button onclick="window.app.switchView('track-order')" class="button-ghost min-h-11">Track by ID</button>
           </div>
         </div>
@@ -565,7 +655,7 @@ export const customerViews = {
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-background-dark pb-5">
             <div>
               <span class="text-xs font-bold uppercase text-accent">Live shipment tracking</span>
-              <h1 class="font-display text-4xl text-primary">Order #${activeOrder.orderId.substring(4) || activeOrder.orderId}</h1>
+              <h1 class="font-display text-4xl text-primary">Order #${S(activeOrder.orderId)}</h1>
             </div>
             <div class="text-left md:text-right">
               <span class="block text-xs text-secondary">Estimated arrival</span>
@@ -573,24 +663,24 @@ export const customerViews = {
             </div>
           </div>
           ${renderTrackingStepper(activeOrder.status)}
-          ${renderMockMap(activeOrder.status)}
+          ${renderLeafletMap(activeOrder.orderId)}
         </main>
 
         <aside class="space-y-5">
           <div class="rounded-lg border border-background-dark bg-background-card p-5 shadow-premium">
             <h2 class="font-display text-2xl text-primary">Shipment details</h2>
             <div class="text-sm text-secondary space-y-2 mt-4 leading-relaxed">
-              <p><strong class="text-primary">Pack:</strong> ${meal ? meal.mealName : 'Frozen dumpling order'}</p>
-              <p><strong class="text-primary">Items:</strong> ${orderLineItems(activeOrder).reduce((sum, item) => sum + Number(item.quantity || 0), 0)} pack(s)</p>
-              <p><strong class="text-primary">Recipient:</strong> ${tracking?.details?.name || 'Guest customer'}</p>
-              <p><strong class="text-primary">Phone:</strong> ${tracking?.details?.phone || 'Not provided'}</p>
-              <p><strong class="text-primary">Address:</strong> ${tracking?.details?.address || 'Not provided'}</p>
-              <p><strong class="text-primary">Payment:</strong> ${tracking?.details?.payment || 'Simulated confirmation'}</p>
+              <p><strong class="text-primary">Item:</strong> ${meal ? S(meal.mealName) : 'HotMealBa order'}</p>
+              <p><strong class="text-primary">Items:</strong> ${orderLineItems(activeOrder).reduce((sum, item) => sum + Number(item.quantity || 0), 0)} item(s)</p>
+              <p><strong class="text-primary">Recipient:</strong> ${S(tracking?.details?.name || 'Guest customer')}</p>
+              <p><strong class="text-primary">Phone:</strong> ${S(tracking?.details?.phone || 'Not provided')}</p>
+              <p><strong class="text-primary">Address:</strong> ${S(tracking?.details?.address || 'Not provided')}</p>
+              <p><strong class="text-primary">Payment:</strong> ${S(tracking?.details?.payment || 'Pending confirmation')}</p>
             </div>
           </div>
           ${activeOrder.status === 'delivered' ? `
             <div class="rounded-lg border border-success/30 bg-success/10 p-5 shadow-premium space-y-4">
-              <h3 class="font-display text-2xl text-primary">How was the pack?</h3>
+              <h3 class="font-display text-2xl text-primary">How was the order?</h3>
               <form onsubmit="event.preventDefault(); window.app.submitRating('${activeOrder.mealId}', this.rating.value, this.review.value)" class="space-y-3">
                 <select name="rating" required class="form-input-premium text-sm min-h-11">
                   <option value="5">5 stars - Excellent</option>
@@ -606,11 +696,73 @@ export const customerViews = {
           ` : `
             <div class="rounded-lg border border-background-dark bg-background-card p-5 shadow-premium">
               <h3 class="font-display text-2xl text-primary">Next update</h3>
-              <p class="text-sm text-secondary mt-2">This simulation advances every 15 seconds after checkout.</p>
+              <p class="text-sm text-secondary mt-2">Admins update status and map location manually from the gateway.</p>
             </div>
           `}
         </aside>
       </div>
+    `;
+
+    setTimeout(() => {
+      if (tracking) mountLeafletTrackingMap(`tracking-map-${activeOrder.orderId}`, tracking);
+    }, 80);
+  },
+
+  renderNotes(container) {
+    const notes = store.state.ratings
+      .filter((rating) => rating.review)
+      .slice(0, 12)
+      .map((rating) => {
+        const meal = store.state.meals.find((item) => item.mealId === rating.mealId);
+        const customer = store.state.customers.find((item) => item.customerId === rating.customerId);
+        return {
+          ...rating,
+          mealName: meal?.mealName || 'HotMealBa Menu',
+          customerName: customer?.name || 'HotMealBa customer'
+        };
+      });
+
+    const fallbackNotes = [
+      { customerName: 'Aina', mealName: 'HotMealBa Dumplings', rating: 5, review: 'Soft skin, warm filling, and the sauce tastes homemade.' },
+      { customerName: 'Wei Ling', mealName: 'Noodle Set', rating: 5, review: 'Easy to order, easy to track, and the food arrived exactly on time.' },
+      { customerName: 'Farah', mealName: 'Campus Bundle', rating: 4, review: 'The bundle is neat for sharing after class. Love the clear cart.' }
+    ];
+    const visibleNotes = notes.length ? notes : fallbackNotes;
+    noteIndex = Math.min(noteIndex, visibleNotes.length - 1);
+
+    container.innerHTML = `
+      <section class="animate-fade-scroll max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-6 items-center">
+        <div class="rounded-lg border border-background-dark bg-background-card p-5 md:p-7 shadow-premium">
+          <span class="text-xs font-bold uppercase text-accent">Handwritten reviews</span>
+          <h1 class="font-display text-4xl md:text-5xl text-primary mt-2">Notes from HotMealBa customers</h1>
+          <p class="text-sm text-secondary mt-3 leading-relaxed">Tap or flick the note stack to bring the next review forward. New saved reviews join this page after delivered-order feedback.</p>
+          <div class="mt-5 flex gap-3">
+            <button onclick="window.app.nextReviewNote()" class="button-accent min-h-11">Next note</button>
+            <button onclick="window.app.switchView('catalog')" class="button-ghost min-h-11">Browse Menu</button>
+          </div>
+        </div>
+        <div class="relative min-h-[420px]">
+          <div id="review-note-stack" class="relative h-[420px]" onclick="window.app.nextReviewNote()" ontouchend="window.app.nextReviewNote()" role="button" tabindex="0" aria-label="Show next review note">
+            ${visibleNotes.map((note, index) => {
+              const offset = (index - noteIndex + visibleNotes.length) % visibleNotes.length;
+              const top = offset === 0;
+              return `
+                <article class="note-card ${top ? 'z-20' : 'z-10'}" style="transform: translate(${offset * 9}px, ${offset * 8}px) rotate(${offset % 2 ? 2 : -2}deg); opacity:${offset > 3 ? 0 : 1};">
+                  <div class="flex items-center justify-between gap-3 border-b border-background-dark pb-3">
+                    <div>
+                      <p class="text-xl text-primary font-bold">${S(note.customerName)}</p>
+                      <p class="text-xs text-secondary font-sans">${S(note.mealName)}</p>
+                    </div>
+                    <span class="flex">${renderRatingStars(note.rating)}</span>
+                  </div>
+                  <p class="mt-8 text-2xl leading-relaxed text-primary">"${S(note.review)}"</p>
+                  <p class="absolute bottom-5 right-6 text-xs text-secondary font-sans">${index + 1} / ${visibleNotes.length}</p>
+                </article>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      </section>
     `;
   },
 
@@ -620,13 +772,13 @@ export const customerViews = {
         <section class="rounded-lg border border-background-dark bg-primary p-6 md:p-8 text-background shadow-premium">
           <span class="text-xs font-bold uppercase text-background/70">Student reseller program</span>
           <h1 class="font-display text-4xl md:text-6xl text-background leading-none mt-2">Earn with frozen dumpling orders</h1>
-          <p class="text-sm md:text-base text-background/75 max-w-2xl mt-4">Collect orders from classmates, submit batches through Dumpling Desk, and let the supplier handle frozen pack fulfillment.</p>
+          <p class="text-sm md:text-base text-background/75 max-w-2xl mt-4">Collect orders from classmates, submit batches through HotMealBa, and let the kitchen handle fulfillment.</p>
         </section>
         <div class="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-5">
           <aside class="space-y-4">
             ${[
               ['Flexible income', 'Sell around your class schedule with simple weekly batches.'],
-              ['No kitchen needed', 'You collect orders; frozen packs are prepared and shipped for you.'],
+              ['No kitchen needed', 'You collect orders; HotMealBa prepares and ships for you.'],
               ['Campus network', 'Offer sampler boxes, sauces, and party trays to friends and clubs.'],
               ['Clear margins', 'Reseller cases are designed for repeatable student-side revenue.']
             ].map(([title, body]) => `
@@ -649,7 +801,7 @@ export const customerViews = {
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <label class="space-y-1 text-xs font-bold text-secondary">Email<input type="email" name="email" required placeholder="student@university.edu" class="form-input-premium text-sm min-h-12 font-normal" /></label>
-                <label class="space-y-1 text-xs font-bold text-secondary">Phone<input type="tel" name="phone" required placeholder="+60 12-345 6789" class="form-input-premium text-sm min-h-12 font-normal" /></label>
+                <label class="space-y-1 text-xs font-bold text-secondary">Phone<input type="tel" name="phone" inputmode="tel" pattern="[0-9+\\-\\s]*" oninput="window.app.sanitizePhoneInput(this)" required placeholder="+60 12-345 6789" class="form-input-premium text-sm min-h-12 font-normal" /></label>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <label class="space-y-1 text-xs font-bold text-secondary">Expected weekly orders<input type="number" name="weeklyOrders" min="1" required placeholder="e.g. 25" class="form-input-premium text-sm min-h-12 font-normal" /></label>
@@ -673,20 +825,24 @@ export const customerViews = {
 
   submitApplication(formData) {
     const application = {
-      fullName: formData.get('fullName'),
-      studentId: formData.get('studentId'),
-      university: formData.get('university'),
-      faculty: formData.get('faculty'),
-      email: formData.get('email'),
-      phone: formData.get('phone'),
-      weeklyOrders: formData.get('weeklyOrders'),
-      area: formData.get('area'),
-      motivation: formData.get('motivation'),
+      fullName: sanitizeText(formData.get('fullName'), 80),
+      studentId: sanitizeText(formData.get('studentId'), 40),
+      university: sanitizeText(formData.get('university'), 120),
+      faculty: sanitizeText(formData.get('faculty'), 120),
+      email: sanitizeText(formData.get('email'), 120),
+      phone: sanitizePhone(formData.get('phone')),
+      weeklyOrders: sanitizeText(formData.get('weeklyOrders'), 8),
+      area: sanitizeText(formData.get('area'), 120),
+      motivation: sanitizeText(formData.get('motivation'), 360),
       submittedAt: new Date().toISOString()
     };
-    const apps = JSON.parse(localStorage.getItem('dumplingdesk_applications') || '[]');
+    if (!application.phone || !/^\+?[\d\-\s]{7,}$/.test(application.phone)) {
+      window.app.showFloatingAlert('Enter a valid phone number using digits only.', 'info');
+      return;
+    }
+    const apps = JSON.parse(localStorage.getItem('hotmealba_applications') || '[]');
     apps.push(application);
-    localStorage.setItem('dumplingdesk_applications', JSON.stringify(apps));
+    localStorage.setItem('hotmealba_applications', JSON.stringify(apps));
     window.app.showFloatingAlert('Application submitted. The reseller team will contact you soon.', 'success');
     window.app.switchView('home');
   },
@@ -714,14 +870,14 @@ export const customerViews = {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-background-dark pt-4">
               <div class="rounded-lg bg-background border border-background-dark p-4 text-sm text-secondary space-y-2">
                 <h3 class="font-display text-xl text-primary">Order details</h3>
-                <p><strong class="text-primary">Pack:</strong> ${meal ? meal.mealName : 'N/A'}</p>
+                <p><strong class="text-primary">Item:</strong> ${meal ? S(meal.mealName) : 'N/A'}</p>
                 <p><strong class="text-primary">Quantity:</strong> ${order.quantity}</p>
                 <p><strong class="text-primary">Amount:</strong> ${RM(order.amount)}</p>
                 <p><strong class="text-primary">Date:</strong> ${new Date(order.orderDate).toLocaleDateString([], { year: 'numeric', month: 'long', day: 'numeric' })}</p>
               </div>
               <div class="rounded-lg bg-background border border-background-dark p-4 text-sm text-secondary space-y-2">
                 <h3 class="font-display text-xl text-primary">Shipment</h3>
-                <p><strong class="text-primary">Customer:</strong> ${customer ? customer.name : 'Guest'}</p>
+                <p><strong class="text-primary">Customer:</strong> ${S(customer ? customer.name : tracking?.details?.name || 'Guest')}</p>
                 <p><strong class="text-primary">ETA:</strong> ${tracking ? tracking.estimatedTime : 'N/A'}</p>
                 <p><strong class="text-primary">Courier:</strong> ${tracking ? tracking.driverName : 'N/A'}</p>
                 <p><strong class="text-primary">Contact:</strong> ${tracking ? tracking.driverPhone : 'N/A'}</p>
@@ -733,22 +889,26 @@ export const customerViews = {
         resultHtml = `
           <div class="rounded-lg border border-background-dark bg-background-card p-10 text-center shadow-premium">
             <h2 class="font-display text-3xl text-primary">Order not found</h2>
-            <p class="text-sm text-secondary mt-2">No order matches "${trackOrderResult.query}". Check the order ID and try again.</p>
+            <p class="text-sm text-secondary mt-2">No order matches "${S(trackOrderResult.query)}". Check the order ID and try again.</p>
           </div>
         `;
       }
     } else {
       resultHtml = `
         <div class="rounded-lg border border-background-dark bg-background-card p-5 shadow-premium">
-          <h2 class="font-display text-2xl text-primary mb-4">Recent simulated orders</h2>
+          <h2 class="font-display text-2xl text-primary mb-4">Recent actual orders</h2>
           <div class="space-y-3">
-            ${recentOrders.map((order) => `
+            ${recentOrders.length === 0 ? `
+              <div class="rounded-lg border border-background-dark bg-background p-5 text-sm text-secondary">
+                No orders have been saved yet. Place an order, then search the order number or tracking number here.
+              </div>
+            ` : recentOrders.map((order) => `
               <button onclick="window.app.trackOrderLookup('${order.orderId}')" class="w-full flex items-center justify-between gap-3 p-3 bg-background rounded-lg border border-background-dark hover:border-accent/40 transition-all text-left min-h-[72px]">
                 <span class="flex items-center gap-3 min-w-0">
-                  ${order.meal ? `<img src="${order.meal.image}" alt="${order.meal.mealName}" class="w-12 h-12 rounded-lg object-cover border border-background-dark" />` : ''}
+                  ${order.meal ? `<img src="${S(order.meal.image)}" alt="${S(order.meal.mealName)}" class="w-12 h-12 rounded-lg object-cover border border-background-dark" />` : ''}
                   <span class="min-w-0">
-                    <span class="block font-bold text-primary">${order.orderId}</span>
-                    <span class="block text-xs text-secondary line-clamp-1">${order.meal ? order.meal.mealName : 'Frozen pack'} - ${RM(order.amount)}</span>
+                    <span class="block font-bold text-primary">${S(order.orderId)}</span>
+                    <span class="block text-xs text-secondary line-clamp-1">${order.meal ? S(order.meal.mealName) : 'HotMealBa order'} - ${RM(order.amount)}</span>
                   </span>
                 </span>
                 <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold border whitespace-nowrap ${statusColors[order.status] || 'bg-background text-secondary border-background-dark'}">${statusLabels[order.status] || order.status}</span>
@@ -763,10 +923,10 @@ export const customerViews = {
       <section class="animate-fade-scroll max-w-4xl mx-auto space-y-5">
         <div class="rounded-lg border border-background-dark bg-background-card p-5 md:p-7 shadow-premium text-center">
           <span class="text-xs font-bold uppercase text-accent">Order lookup</span>
-          <h1 class="font-display text-4xl md:text-5xl text-primary mt-1">Track your dumpling shipment</h1>
-          <p class="text-sm text-secondary mt-2">Enter an order ID or choose a recent simulated order.</p>
+          <h1 class="font-display text-4xl md:text-5xl text-primary mt-1">Track your HotMealBa order</h1>
+          <p class="text-sm text-secondary mt-2">Enter an order ID or tracking number from a saved order.</p>
           <form onsubmit="event.preventDefault(); window.app.trackOrderLookup(this.orderId.value)" class="mt-5 flex flex-col sm:flex-row gap-3">
-            <input type="text" name="orderId" id="trackOrderInput" placeholder="Enter Order ID, e.g. ord_1234" class="form-input-premium text-sm min-h-12 flex-grow" value="${trackOrderResult ? trackOrderResult.query : ''}" />
+            <input type="text" name="orderId" id="trackOrderInput" placeholder="Enter Order ID, e.g. HMB-..." class="form-input-premium text-sm min-h-12 flex-grow" value="${trackOrderResult ? S(trackOrderResult.query) : ''}" />
             <button type="submit" class="button-accent min-h-12 whitespace-nowrap">Track order</button>
           </form>
         </div>
@@ -776,18 +936,31 @@ export const customerViews = {
   },
 
   trackOrderLookup(query) {
-    const q = query.trim();
+    const q = sanitizeOrderId(query);
     if (!q) {
       window.app.showFloatingAlert('Enter an order ID to track.', 'info');
       return;
     }
-    const order = store.state.orders.find((o) => o.orderId.toLowerCase() === q.toLowerCase());
+    const order = store.state.orders.find((o) => {
+      const orderId = o.orderId.toLowerCase();
+      const trackingId = String(o.trackingId || '').toLowerCase();
+      const lookup = q.toLowerCase();
+      return orderId === lookup || trackingId === lookup || orderId.endsWith(lookup) || trackingId.endsWith(lookup);
+    });
     const tracking = order ? store.state.delivery.find((d) => d.orderId === order.orderId) : null;
     const meal = order ? orderPrimaryMeal(order) : null;
     const customer = order ? store.state.customers.find((c) => c.customerId === order.customerId) : null;
     trackOrderResult = { query: q, order, tracking, meal, customer };
+    if (order) store.setState({ activeOrder: order });
     const container = document.getElementById('view-container');
     if (store.state.activeView === 'track-order' && container) this.renderTrackOrder(container);
+  },
+
+  nextReviewNote() {
+    const noteCount = Math.max(1, store.state.ratings.filter((rating) => rating.review).slice(0, 12).length || 3);
+    noteIndex = (noteIndex + 1) % noteCount;
+    const container = document.getElementById('view-container');
+    if (store.state.activeView === 'notes' && container) this.renderNotes(container);
   }
 };
 
@@ -799,3 +972,4 @@ window.app.catalogPage = customerViews.catalogPage.bind(customerViews);
 window.app.submitCheckout = customerViews.submitCheckout.bind(customerViews);
 window.app.submitApplication = customerViews.submitApplication.bind(customerViews);
 window.app.trackOrderLookup = customerViews.trackOrderLookup.bind(customerViews);
+window.app.nextReviewNote = customerViews.nextReviewNote.bind(customerViews);

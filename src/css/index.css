@@ -1,10 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;600;700&family=Noto+Sans+SC:wght@400;600;700&family=Oswald:wght@500;600;700&display=swap');
+
+@font-face {
+  font-family: 'BacherDemo';
+  src: url('/assets/fonts/BacherDemo-Regular.ttf') format('truetype');
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-primary: 30 42 78;
+    --color-primary-light: 46 64 111;
+    --color-primary-dark: 16 24 46;
+    --color-secondary: 94 98 112;
+    --color-secondary-light: 126 132 146;
+    --color-secondary-dark: 55 60 73;
+    --color-accent: 231 97 59;
+    --color-accent-light: 246 142 111;
+    --color-accent-dark: 176 73 50;
+    --color-background: 248 249 247;
+    --color-background-card: 255 255 252;
+    --color-background-dark: 224 228 224;
+    --color-charcoal: 28 32 42;
+    --color-charcoal-light: 69 73 84;
+    --color-charcoal-dark: 14 18 28;
+    --color-success: 54 127 101;
+    --color-success-light: 83 157 128;
+    --color-success-dark: 34 93 72;
+    --color-warning: 184 124 54;
+    --color-warning-light: 217 153 83;
+    --color-warning-dark: 133 85 33;
+    --color-danger: 162 70 68;
+    --color-danger-light: 190 91 87;
+    --color-danger-dark: 119 47 49;
+  }
+
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --color-primary: 236 240 247;
+    --color-primary-light: 255 255 255;
+    --color-primary-dark: 204 214 230;
+    --color-secondary: 158 165 180;
+    --color-secondary-light: 196 202 214;
+    --color-secondary-dark: 120 127 143;
+    --color-accent: 244 130 95;
+    --color-accent-light: 255 177 146;
+    --color-accent-dark: 208 91 66;
+    --color-background: 15 19 27;
+    --color-background-card: 24 30 41;
+    --color-background-dark: 56 66 84;
+    --color-charcoal: 236 240 247;
+    --color-charcoal-light: 205 211 222;
+    --color-charcoal-dark: 255 255 255;
+    --color-success: 116 181 144;
+    --color-success-light: 142 211 173;
+    --color-success-dark: 77 145 108;
+    --color-warning: 221 163 90;
+    --color-warning-light: 247 190 111;
+    --color-warning-dark: 176 120 53;
+    --color-danger: 223 119 111;
+    --color-danger-light: 246 151 140;
+    --color-danger-dark: 181 80 76;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-charcoal font-sans antialiased selection:bg-accent selection:text-white;
     overflow-x: hidden;
@@ -13,6 +78,10 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-display text-primary font-semibold;
     letter-spacing: 0;
+  }
+
+  [dir="rtl"] body {
+    text-align: right;
   }
 }
 
@@ -44,6 +113,7 @@
   /* Inputs */
   .form-input-premium {
     @apply w-full px-4 py-3 bg-background-card border border-background-dark rounded-lg focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 transition-all text-charcoal placeholder:text-secondary/50;
+    transition-duration: 160ms;
   }
 
   .section-reveal {
@@ -53,16 +123,78 @@
   }
 
   .button-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-bold text-background transition-all hover:bg-primary-light active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-bold text-background transition-all hover:bg-primary-light active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .button-accent {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-bold text-white shadow-accent-glow transition-all hover:bg-accent-dark hover:shadow-none active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-bold text-white shadow-accent-glow transition-all hover:bg-accent-dark hover:shadow-none active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .button-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-background-dark bg-background-card px-5 py-3 text-sm font-bold text-primary transition-all hover:border-accent/40 hover:bg-white active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-background-dark bg-background-card px-5 py-3 text-sm font-bold text-primary transition-all hover:border-accent/40 hover:bg-background active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
   }
+
+  .theme-toggle {
+    @apply relative inline-flex h-10 w-[76px] items-center rounded-full border border-background-dark bg-background-card p-1 shadow-sm transition-colors;
+  }
+
+  .theme-toggle-thumb {
+    @apply absolute left-1 top-1 grid h-8 w-8 place-items-center rounded-full bg-accent text-white shadow-accent-glow transition-transform duration-200;
+  }
+
+  [data-theme="dark"] .theme-toggle-thumb {
+    transform: translateX(36px);
+  }
+
+  .mobile-nav-shell {
+    @apply fixed bottom-3 left-3 right-3 z-40 mx-auto flex h-[70px] max-w-md items-center justify-between rounded-2xl border border-background-dark bg-background-card/95 px-2 shadow-premium backdrop-blur-md md:hidden;
+  }
+
+  .mobile-nav-button {
+    @apply flex min-h-12 min-w-12 flex-col items-center justify-center gap-0.5 rounded-xl px-2 text-[10px] font-bold text-secondary transition-all;
+  }
+
+  .mobile-nav-button.is-active {
+    @apply bg-accent text-white shadow-accent-glow;
+  }
+
+  .note-card {
+    @apply absolute inset-0 rounded-lg border border-background-dark bg-background-card p-6 shadow-premium;
+    font-family: "Segoe Print", "Comic Sans MS", BacherDemo, cursive;
+    transform-origin: center bottom;
+  }
+
+  .clean-dialog {
+    @apply rounded-2xl border border-background-dark bg-background-card shadow-2xl;
+  }
+
+  .time-option-disabled {
+    @apply text-secondary/45 bg-background-dark/40;
+  }
+
+  .leaflet-container {
+    font-family: Inter, sans-serif;
+  }
+
+  .leaflet-control-attribution {
+    font-size: 10px;
+  }
+}
+
+#dumpling-bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.22;
+}
+
+[data-theme="dark"] #dumpling-bg-canvas {
+  opacity: 0.12;
+}
+
+.app-shell {
+  isolation: isolate;
 }
 
 /* Animations */

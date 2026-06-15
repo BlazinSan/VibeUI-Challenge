@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Dumpling Desk - a responsive frozen dumpling ordering, reseller, tracking, and admin operations interface for Vibe UI Challenge 2026.">
-  <title>Dumpling Desk | Frozen Dumpling Orders</title>
+  <meta name="description" content="HotMealBa - a responsive food ordering, reseller, tracking, and admin operations interface for Vibe UI Challenge 2026.">
+  <title>HotMealBa | Campus Meals</title>
   <!-- Standard Favicon link -->
-  <link rel="icon" type="image/svg+xml" href="/assets/brand/logo.svg" onerror="this.href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥟</text></svg>'">
+  <link rel="icon" type="image/png" href="/assets/images/hotmealba-logo.png">
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/src/css/index.css">
 </head>
-<body class="bg-background min-h-screen flex flex-col justify-between">
+<body class="app-shell bg-background min-h-screen flex flex-col justify-between">
+  <canvas id="dumpling-bg-canvas" aria-hidden="true"></canvas>
 
   <!-- ============================================ -->
   <!-- CUSTOMER HEADER (Desktop Navigation)         -->
@@ -18,38 +19,47 @@
   <header id="nav-header" class="fixed top-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-md border-b border-background-dark transition-all">
     <div class="max-w-7xl mx-auto px-4 md:px-8 h-[72px] flex items-center justify-between">
       <!-- Logo / Branding -->
-      <div class="flex items-center gap-2.5 cursor-pointer" onclick="window.app.switchView('home')">
-        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-background shadow-accent-glow">
-          <svg class="w-5.5 h-5.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a3 3 0 00-3-3H9.75a3 3 0 00-3 3h15.375M12 13.5h3.75M9 15h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-.621-.504-1.125-1.125-1.125H9.75M9.663 5.378A4 4 0 100 11.25c0 .621.504 1.125 1.125 1.125H9.75M12 3v18M3 12h18"/>
-          </svg>
-        </div>
-        <span class="font-display font-bold text-xl text-primary tracking-normal">Dumpling<span class="text-accent">Desk</span></span>
+      <div class="flex items-center gap-2.5 cursor-pointer" onclick="window.app.switchView('home')" role="button" tabindex="0" aria-label="Go to Home">
+        <img src="/assets/images/hotmealba-logo.png" alt="HotMealBa logo" class="w-11 h-11 rounded-lg object-cover border border-background-dark bg-background-card shadow-accent-glow" />
+        <span class="font-display font-bold text-xl text-primary tracking-normal">HotMeal<span class="text-accent">Ba</span></span>
       </div>
 
       <!-- Navigation routes -->
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-        <button data-route="home" onclick="window.app.switchView('home')" class="text-secondary hover:text-primary transition-colors cursor-pointer">Home</button>
-        <button data-route="catalog" onclick="window.app.switchView('catalog')" class="text-secondary hover:text-primary transition-colors cursor-pointer">Pack Menu</button>
-        <button data-route="track-order" onclick="window.app.switchView('track-order')" class="text-secondary-light hover:text-primary transition-colors cursor-pointer">Track Order</button>
-        <button data-route="apply" onclick="window.app.switchView('apply')" class="text-secondary-light hover:text-primary transition-colors cursor-pointer">Reseller</button>
+        <button data-route="home" data-i18n="nav.home" onclick="window.app.switchView('home')" class="text-secondary hover:text-primary transition-colors cursor-pointer">Home</button>
+        <button data-route="catalog" data-i18n="nav.menu" onclick="window.app.switchView('catalog')" class="text-secondary hover:text-primary transition-colors cursor-pointer">Menu</button>
+        <button data-route="notes" data-i18n="nav.notes" onclick="window.app.switchView('notes')" class="text-secondary-light hover:text-primary transition-colors cursor-pointer">Reviews</button>
+        <button data-route="track-order" data-i18n="nav.track" onclick="window.app.switchView('track-order')" class="text-secondary-light hover:text-primary transition-colors cursor-pointer">Track Order</button>
+        <button data-route="apply" data-i18n="nav.reseller" onclick="window.app.switchView('apply')" class="text-secondary-light hover:text-primary transition-colors cursor-pointer">Reseller</button>
         <button onclick="window.app.switchView('admin-dash')" class="text-secondary hover:text-accent font-semibold flex items-center gap-1.5 transition-colors cursor-pointer">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.43l-1.003.828c-.293.241-.438.613-.43.992a7.723 7.723 0 010 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.43l1.004-.827c.292-.24.437-.613.43-.991a6.936 6.936 0 010-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-          Admin Gateway
+          <span data-i18n="nav.admin">Admin Gateway</span>
         </button>
       </nav>
 
-      <!-- Cart Button desktop -->
-      <button 
-        onclick="window.app.openCartDrawer()"
-        class="relative bg-background-card hover:bg-white border border-background-dark p-3 rounded-lg text-primary hover:text-accent transition-all cursor-pointer flex items-center justify-center active:scale-95 shadow-sm"
-        aria-label="Shopping Cart"
-      >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
-        </svg>
-        <span class="cart-count-badge absolute -top-1.5 -right-1.5 bg-accent text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md border border-background hidden">0</span>
-      </button>
+      <div class="flex items-center gap-2">
+        <select id="language-toggle" onchange="window.app.setLanguage(this.value)" class="hidden sm:block form-input-premium min-h-10 w-24 px-2 py-1 text-xs font-bold" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="zh">中文</option>
+          <option value="ms">BM</option>
+          <option value="ar">عربي</option>
+        </select>
+        <button onclick="window.app.toggleTheme()" class="theme-toggle" aria-label="Toggle light or dark mode" title="Theme">
+          <span class="theme-toggle-thumb">
+            <svg class="theme-icon-sun w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m0 13.5V21m8.25-9h-2.25M6 12H3.75m14.85-6.6l-1.59 1.59M7 17l-1.6 1.6m13.2 0L17 17M7 7 5.4 5.4M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+          </span>
+        </button>
+        <button 
+          onclick="window.app.openCartDrawer()"
+          class="relative bg-background-card hover:bg-background border border-background-dark p-3 rounded-lg text-primary hover:text-accent transition-all cursor-pointer flex items-center justify-center active:scale-95 shadow-sm"
+          aria-label="Cart"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/>
+          </svg>
+          <span class="cart-count-badge absolute -top-1.5 -right-1.5 bg-accent text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md border border-background hidden">0</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -62,7 +72,7 @@
       <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center text-white">
         <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253"/></svg>
       </div>
-      <span class="font-display font-bold text-base tracking-normal">Dumpling<span class="text-accent">Ops</span></span>
+      <span class="font-display font-bold text-base tracking-normal">HotMeal<span class="text-accent">Ba</span></span>
     </div>
 
     <!-- Links list -->
@@ -112,11 +122,9 @@
   <!-- ============================================ -->
   <footer class="bg-primary-dark text-background/60 py-6 border-t border-white/5">
     <div class="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
-      <p>© 2026 Dumpling Desk. Frozen dumpling orders, reseller applications, and simulated delivery ops.</p>
+      <p>© 2026 HotMealBa. Campus meals, reseller applications, and live delivery tracking.</p>
       <div class="flex gap-6">
-        <span class="hover:text-white cursor-pointer">Privacy</span>
-        <span class="hover:text-white cursor-pointer">Terms</span>
-        <span class="hover:text-white cursor-pointer">Support</span>
+        <a class="hover:text-white cursor-pointer" href="https://wa.me/601127023015" target="_blank" rel="noopener">Support</a>
       </div>
     </div>
   </footer>
@@ -124,29 +132,26 @@
   <!-- ============================================ -->
   <!-- MOBILE BOTTOM STICKY BAR                     -->
   <!-- ============================================ -->
-  <nav id="nav-mobile" class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-secondary/5 h-16 flex md:hidden items-center justify-around text-[10px] font-semibold text-secondary-light">
-    <button onclick="window.app.switchView('home')" class="flex flex-col items-center gap-1 cursor-pointer hover:text-accent">
+  <nav id="nav-mobile" class="mobile-nav-shell">
+    <button data-route="home" onclick="window.app.switchView('home')" class="mobile-nav-button" aria-label="Home">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
       Home
     </button>
-    <button onclick="window.app.switchView('catalog')" class="flex flex-col items-center gap-1 cursor-pointer hover:text-accent">
+    <button data-route="catalog" onclick="window.app.switchView('catalog')" class="mobile-nav-button" aria-label="Menu">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
-      Packs
+      Menu
     </button>
-    <button onclick="window.app.switchView('track-order')" class="flex flex-col items-center gap-1 cursor-pointer hover:text-accent">
+    <button data-route="notes" onclick="window.app.switchView('notes')" class="mobile-nav-button" aria-label="Reviews">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487 18.55 2.8a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 7.125 16.875 4.5M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/></svg>
+      Notes
+    </button>
+    <button data-route="track-order" onclick="window.app.switchView('track-order')" class="mobile-nav-button" aria-label="Track">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
       Track
     </button>
-    <button onclick="window.app.switchView('apply')" class="flex flex-col items-center gap-1 cursor-pointer hover:text-accent">
+    <button data-route="apply" onclick="window.app.switchView('apply')" class="mobile-nav-button" aria-label="Reseller">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z"/></svg>
       Resell
-    </button>
-    <button onclick="window.app.openCartDrawer()" class="relative flex flex-col items-center gap-1 cursor-pointer hover:text-accent">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
-      </svg>
-      Cart
-      <span class="cart-count-badge absolute -top-1 -right-2 bg-accent text-white text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-md hidden">0</span>
     </button>
   </nav>
 
@@ -158,7 +163,7 @@
     <div class="h-20 border-b border-secondary/5 px-6 flex items-center justify-between">
       <h3 class="font-display font-bold text-lg text-primary flex items-center gap-2">
         <svg class="w-5.5 h-5.5 text-accent" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.2 0 .75.75 0 011.2 0zm12.75 0a.75.75 0 11-1.2 0 .75.75 0 011.2 0z"/></svg>
-        Order Basket
+        Cart
       </h3>
       <button onclick="window.app.closeCartDrawer()" class="text-secondary/40 hover:text-primary p-2 rounded-full hover:bg-background transition-colors cursor-pointer">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>

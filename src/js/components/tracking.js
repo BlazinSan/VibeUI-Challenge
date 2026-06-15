@@ -1,12 +1,15 @@
-// tracking.js - Custom interactive maps and stepper timeline for Order tracking screen
+// tracking.js - Tracking stepper and Leaflet/OpenStreetMap rendering
+
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 export function renderTrackingStepper(status) {
   const steps = [
-    { key: 'received', label: 'Order received', desc: 'Your pack request is in the order queue.' },
+    { key: 'received', label: 'Order received', desc: 'Your order request is in the queue.' },
     { key: 'preparing', label: 'Payment confirmed', desc: 'Payment or COD confirmation is logged.' },
-    { key: 'cooking', label: 'Packing frozen packs', desc: 'Dumplings and sauces are being packed for shipment.' },
-    { key: 'out_for_delivery', label: 'Out for shipment', desc: 'Courier is carrying the frozen pack order.' },
-    { key: 'delivered', label: 'Delivered', desc: 'Frozen packs have reached the address.' }
+    { key: 'cooking', label: 'Packing order', desc: 'Meals, dumplings, and sauces are being packed.' },
+    { key: 'out_for_delivery', label: 'Out for shipment', desc: 'Courier is carrying the HotMealBa order.' },
+    { key: 'delivered', label: 'Delivered', desc: 'The order has reached the address.' }
   ];
 
   const statusIndices = {
@@ -88,76 +91,10 @@ export function renderTrackingStepper(status) {
   `;
 }
 
-export function renderMockMap(status) {
-  // SVG coordinates for animation based on statuses
-  // Warehouse (Fixed): (50, 150)
-  // Delivery Point (Fixed): (350, 50)
-  let driverX = 50;
-  let driverY = 150;
-  let progressPct = 0;
-
-  if (status === 'preparing') {
-    progressPct = 5;
-  } else if (status === 'cooking') {
-    progressPct = 15;
-  } else if (status === 'out_for_delivery') {
-    progressPct = 60;
-  } else if (status === 'delivered') {
-    progressPct = 100;
-  }
-
-  // Linear path extrapolation
-  driverX = 50 + (300 * progressPct) / 100;
-  driverY = 150 - (100 * progressPct) / 100;
-
+export function renderLeafletMap(orderId) {
   return `
-    <div class="relative w-full aspect-[2/1] bg-[#E7DDCF] rounded-lg overflow-hidden border border-background-dark shadow-premium min-h-[220px]">
-      <svg class="w-full h-full" viewBox="0 0 400 200">
-        <!-- Grid Gridlines -->
-        <defs>
-          <pattern id="mapGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(114, 106, 96, 0.12)" stroke-width="1"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#mapGrid)"/>
-        
-        <!-- Streets/Roads -->
-        <path d="M 50 150 L 120 150 L 120 90 L 250 90 L 250 50 L 350 50" fill="none" stroke="#FFFAF2" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M 50 150 L 120 150 L 120 90 L 250 90 L 250 50 L 350 50" fill="none" stroke="#D8CCBC" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-        
-        <!-- Cross street details -->
-        <path d="M 120 190 L 120 150" fill="none" stroke="#FFFAF2" stroke-width="12" stroke-linecap="round"/>
-        <path d="M 120 190 L 120 150" fill="none" stroke="#D8CCBC" stroke-width="8" stroke-linecap="round"/>
-        <path d="M 250 10 L 250 50" fill="none" stroke="#FFFAF2" stroke-width="12" stroke-linecap="round"/>
-        <path d="M 250 10 L 250 50" fill="none" stroke="#D8CCBC" stroke-width="8" stroke-linecap="round"/>
-
-        <!-- Route trace line -->
-        <path d="M 50 150 L 120 150 L 120 90 L 250 90 L 250 50 L 350 50" fill="none" stroke="#8B5B1F" stroke-width="3" stroke-dasharray="8 4" stroke-linecap="round" class="opacity-70"/>
-
-        <!-- Restaurant Node (Start) -->
-        <circle cx="50" cy="150" r="10" fill="#151412" stroke="#FFFAF2" stroke-width="2.5"/>
-        <text x="50" y="172" fill="#151412" font-family="Oswald, sans-serif" font-size="8" font-weight="bold" text-anchor="middle">Pack Hub</text>
-        
-        <!-- Customer Node (Destination) -->
-        <circle cx="350" cy="50" r="10" fill="#5E7463" stroke="#FFFAF2" stroke-width="2.5"/>
-        <text x="350" y="32" fill="#405344" font-family="Oswald, sans-serif" font-size="8" font-weight="bold" text-anchor="middle">Address</text>
-
-        <!-- Dynamic Delivery Driver Icon Node -->
-        ${status !== 'delivered' ? `
-          <g transform="translate(${driverX}, ${driverY})" class="transition-all duration-1000 ease-in-out">
-            <!-- Ripple Pulse -->
-            <circle cx="0" cy="0" r="14" fill="#8B5B1F" class="opacity-20">
-              <animate attributeName="r" values="8;18;8" dur="2s" repeatCount="indefinite" />
-            </circle>
-            <!-- Pin -->
-            <circle cx="0" cy="0" r="7" fill="#8B5B1F" stroke="#FFFAF2" stroke-width="1.5"/>
-            <!-- Tiny Bike/Driver Indicator -->
-            <circle cx="0" cy="0" r="2.5" fill="#FFFFFF"/>
-          </g>
-        ` : ''}
-      </svg>
-      
-      <!-- Overlay Driver Info -->
+    <div class="relative w-full aspect-[2/1] rounded-lg overflow-hidden border border-background-dark shadow-premium min-h-[260px]">
+      <div id="tracking-map-${orderId}" class="h-full w-full bg-background" data-native-scroll></div>
       <div class="absolute bottom-4 left-4 bg-background-card/95 backdrop-blur-md px-3.5 py-2 rounded-lg border border-background-dark shadow-md flex items-center gap-3">
         <div class="w-7 h-7 bg-accent/10 rounded-full flex items-center justify-center text-accent">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -165,10 +102,60 @@ export function renderMockMap(status) {
           </svg>
         </div>
         <div>
-          <h5 class="text-[10px] text-secondary font-medium uppercase">Courier</h5>
-          <p class="text-xs font-bold text-primary">${status === 'delivered' ? 'Arrived' : 'Campus courier en route'}</p>
+          <h5 class="text-[10px] text-secondary font-medium uppercase">OpenStreetMap</h5>
+          <p class="text-xs font-bold text-primary">Location updated by admin</p>
         </div>
       </div>
     </div>
   `;
+}
+
+export function mountLeafletTrackingMap(containerId, tracking) {
+  const el = document.getElementById(containerId);
+  if (!el || el.dataset.mounted === '1') return;
+  el.dataset.mounted = '1';
+
+  const hub = tracking?.hub || { lat: 1.5588, lng: 103.6376, label: 'HotMealBa Kitchen' };
+  const destination = tracking?.destination || { lat: 1.5625, lng: 103.6408, label: 'Customer address' };
+  const current = tracking?.location || hub;
+
+  const map = L.map(el, {
+    zoomControl: true,
+    scrollWheelZoom: false,
+    attributionControl: true
+  });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  const pin = (label, color) => L.divIcon({
+    className: '',
+    html: `<span style="display:grid;place-items:center;width:30px;height:30px;border-radius:999px;background:${color};color:white;border:3px solid white;box-shadow:0 8px 18px rgba(0,0,0,.22);font-size:12px;font-weight:800">${label}</span>`,
+    iconSize: [30, 30],
+    iconAnchor: [15, 15]
+  });
+
+  L.marker([hub.lat, hub.lng], { icon: pin('H', '#1E2A4E') }).addTo(map).bindPopup(hub.label || 'HotMealBa Kitchen');
+  L.marker([destination.lat, destination.lng], { icon: pin('A', '#367F65') }).addTo(map).bindPopup(destination.label || 'Customer address');
+  L.marker([current.lat, current.lng], { icon: pin('●', '#E7613B') }).addTo(map).bindPopup(current.label || 'Current order location');
+
+  const route = L.polyline([
+    [hub.lat, hub.lng],
+    [current.lat, current.lng],
+    [destination.lat, destination.lng]
+  ], {
+    color: '#E7613B',
+    weight: 4,
+    opacity: 0.75,
+    dashArray: '8 8'
+  }).addTo(map);
+
+  const bounds = route.getBounds().pad(0.35);
+  map.fitBounds(bounds.isValid() ? bounds : L.latLngBounds([[hub.lat, hub.lng], [destination.lat, destination.lng]]), {
+    maxZoom: 15
+  });
+
+  setTimeout(() => map.invalidateSize(), 80);
 }

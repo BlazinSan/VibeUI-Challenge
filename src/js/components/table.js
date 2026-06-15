@@ -62,7 +62,7 @@ export function renderOrderTable(items) {
     return `
       <div class="py-12 text-center text-secondary-light">
         <svg class="w-12 h-12 mx-auto mb-3 text-secondary/30" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-.621-.504-1.125-1.125-1.125H9.75M9.663 5.378A4 4 0 100 11.25c0 .621.504 1.125 1.125 1.125H9.75M12 3v18M3 12h18"/></svg>
-        No matching orders found.
+        No matching actual orders found.
       </div>
     `;
   }
@@ -108,11 +108,11 @@ export function renderOrderTable(items) {
     return `
       <tr class="hover:bg-background/50 transition-colors border-b border-background-dark">
         <td class="px-4 py-3 whitespace-nowrap text-sm font-semibold text-primary font-display">
-          #${order.orderId.substring(4) || order.orderId}
+          #${order.orderId}
         </td>
         <td class="px-4 py-3 whitespace-nowrap">
           <div class="text-sm font-medium text-charcoal">${order.customerName}</div>
-          <div class="text-xs text-secondary">Student/customer</div>
+          <div class="text-xs text-secondary">Customer</div>
         </td>
         <td class="px-4 py-3 min-w-[220px]">
           <div class="text-sm text-charcoal font-medium">${order.mealName}</div>
@@ -152,7 +152,7 @@ export function renderOrderTable(items) {
           <tr class="bg-background">
             <th class="px-4 py-3 text-left text-xs font-bold text-secondary uppercase">ID</th>
             <th class="px-4 py-3 text-left text-xs font-bold text-secondary uppercase">Customer</th>
-            <th class="px-4 py-3 text-left text-xs font-bold text-secondary uppercase">Pack item</th>
+            <th class="px-4 py-3 text-left text-xs font-bold text-secondary uppercase">Menu item</th>
             <th class="px-4 py-3 text-left text-xs font-bold text-secondary uppercase">Total</th>
             <th class="px-4 py-3 text-left text-xs font-bold text-secondary uppercase">Order date</th>
             <th class="px-4 py-3 text-left text-xs font-bold text-secondary uppercase">Status</th>

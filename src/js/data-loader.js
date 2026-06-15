@@ -61,7 +61,8 @@ export const dataLoader = {
       list = list.filter(o => {
         const cust = store.state.customers.find(c => c.customerId === o.customerId);
         const custName = cust ? cust.name.toLowerCase() : '';
-        return o.orderId.toLowerCase().includes(q) || custName.includes(q);
+        const trackingId = String(o.trackingId || '').toLowerCase();
+        return o.orderId.toLowerCase().includes(q) || trackingId.includes(q) || custName.includes(q);
       });
     }
 
@@ -83,7 +84,7 @@ export const dataLoader = {
       return {
         ...o,
         customerName: customer ? customer.name : 'Guest User',
-        mealName: meal ? meal.mealName : 'Deleted Pack',
+        mealName: meal ? meal.mealName : 'Menu item',
         estimatedTime: tracking ? tracking.estimatedTime : '--:--'
       };
     });
@@ -166,7 +167,10 @@ export const dataLoader = {
     // Popular meals ranking
     const mealQuantities = {};
     orders.forEach(o => {
-      mealQuantities[o.mealId] = (mealQuantities[o.mealId] || 0) + o.quantity;
+      const items = o.lineItems?.length ? o.lineItems : [{ mealId: o.mealId, quantity: o.quantity }];
+      items.forEach((item) => {
+        mealQuantities[item.mealId] = (mealQuantities[item.mealId] || 0) + Number(item.quantity || 0);
+      });
     });
 
     const popularMeals = Object.entries(mealQuantities)

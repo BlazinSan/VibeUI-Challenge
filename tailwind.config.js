@@ -8,49 +8,50 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#151412',
-          light: '#2A2723',
-          dark: '#0E0D0C'
+          DEFAULT: 'rgb(var(--color-primary) / <alpha-value>)',
+          light: 'rgb(var(--color-primary-light) / <alpha-value>)',
+          dark: 'rgb(var(--color-primary-dark) / <alpha-value>)'
         },
         secondary: {
-          DEFAULT: '#726A60',
-          light: '#8C8174',
-          dark: '#4B463F'
+          DEFAULT: 'rgb(var(--color-secondary) / <alpha-value>)',
+          light: 'rgb(var(--color-secondary-light) / <alpha-value>)',
+          dark: 'rgb(var(--color-secondary-dark) / <alpha-value>)'
         },
         accent: {
-          DEFAULT: '#8B5B1F',
-          light: '#B46A3C',
-          dark: '#6F4618'
+          DEFAULT: 'rgb(var(--color-accent) / <alpha-value>)',
+          light: 'rgb(var(--color-accent-light) / <alpha-value>)',
+          dark: 'rgb(var(--color-accent-dark) / <alpha-value>)'
         },
         background: {
-          DEFAULT: '#F7F2E8',
-          card: '#FFFAF2',
-          dark: '#E7DDCF'
+          DEFAULT: 'rgb(var(--color-background) / <alpha-value>)',
+          card: 'rgb(var(--color-background-card) / <alpha-value>)',
+          dark: 'rgb(var(--color-background-dark) / <alpha-value>)'
         },
         charcoal: {
-          DEFAULT: '#151412',
-          light: '#4D4840',
-          dark: '#0E0D0C'
+          DEFAULT: 'rgb(var(--color-charcoal) / <alpha-value>)',
+          light: 'rgb(var(--color-charcoal-light) / <alpha-value>)',
+          dark: 'rgb(var(--color-charcoal-dark) / <alpha-value>)'
         },
         success: {
-          DEFAULT: '#5E7463',
-          light: '#718B77',
-          dark: '#405344'
+          DEFAULT: 'rgb(var(--color-success) / <alpha-value>)',
+          light: 'rgb(var(--color-success-light) / <alpha-value>)',
+          dark: 'rgb(var(--color-success-dark) / <alpha-value>)'
         },
         warning: {
-          DEFAULT: '#9B7442',
-          light: '#B88F57',
-          dark: '#76552E'
+          DEFAULT: 'rgb(var(--color-warning) / <alpha-value>)',
+          light: 'rgb(var(--color-warning-light) / <alpha-value>)',
+          dark: 'rgb(var(--color-warning-dark) / <alpha-value>)'
         },
         danger: {
-          DEFAULT: '#9A4E45',
-          light: '#B8665B',
-          dark: '#743630'
+          DEFAULT: 'rgb(var(--color-danger) / <alpha-value>)',
+          light: 'rgb(var(--color-danger-light) / <alpha-value>)',
+          dark: 'rgb(var(--color-danger-dark) / <alpha-value>)'
         }
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Oswald', 'Inter', 'sans-serif']
+        sans: ['Inter', 'Noto Sans Arabic', 'Noto Sans SC', 'sans-serif'],
+        display: ['BacherDemo', 'Oswald', 'Inter', 'sans-serif'],
+        note: ['"Segoe Print"', '"Comic Sans MS"', 'BacherDemo', 'cursive']
       },
       boxShadow: {
         premium: '0 18px 50px -28px rgba(55, 39, 23, 0.35)',
